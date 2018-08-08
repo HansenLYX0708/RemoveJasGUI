@@ -1,0 +1,3 @@
+1.Try use mvvm model, but the version of .net different, the key Dll is "Microsoft.Extensions.DependencyInjection"
+2.Try other way, like use framkwork Prism, but it make the system more and more  
+3.maybe can use lightMVVM 
