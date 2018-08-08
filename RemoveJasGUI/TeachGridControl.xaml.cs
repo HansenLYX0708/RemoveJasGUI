@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RemoveJasGUI
 {
@@ -19,12 +21,21 @@ namespace RemoveJasGUI
     /// </summary>
     public partial class TeachGridControl : UserControl
     {
-
         public TeachGridControl()
         {
             InitializeComponent();
         }
 
+        public Blade Blade1
+        {
+            get
+            {
+                return (App.Current as App).Container.GetService<Blade>();
+            }
+        }
+
+
+        /**********************************************************************/
         private void Btn_BladeDoubleClick(object sender, MouseButtonEventArgs e)
         {
             TestInstance testInstance = new TestInstance();
@@ -35,5 +46,7 @@ namespace RemoveJasGUI
         {
             //testInstance.Hide();
         }
+
+
     }
 }

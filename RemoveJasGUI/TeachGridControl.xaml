@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RemoveJasGUI"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             x:Name="TeachViews"
+             DataContext="{Binding ElementName=TeachGridControl}">
     <UserControl.Resources>
         <ContextMenu x:Key="BladeMenu">
             <MenuItem Name="BladeTeach" Header="Teach"/>
@@ -191,7 +193,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                <Button Template="{StaticResource BladeButtonTemplate}" Content="{Binding Blade1.Name, Mode=TwoWay}" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
