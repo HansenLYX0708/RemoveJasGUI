@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace RemoveJasGUI
 {
@@ -19,9 +20,16 @@ namespace RemoveJasGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<MachineCapability> Capabilities { get; } = new ObservableCollection<MachineCapability>();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+            var capabilities = new CapabilityRepository().GetCapability();
+            foreach (var capability in capabilities)
+            {
+                this.Capabilities.Add(capability);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -67,5 +75,32 @@ namespace RemoveJasGUI
                 e.Cancel = true;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MachineCapability a = new MachineCapability { Name = "test", Description = "test1", Value = "Test1" };
+            this.Capabilities.Add(a);
+        }
+    }
+
+    public sealed class MachineCapability
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Value { get; set; }
+    }
+
+    public sealed class CapabilityRepository
+    {
+        private static IEnumerable<MachineCapability> s_Capability;
+
+        public IEnumerable<MachineCapability> GetCapability() =>
+          s_Capability ?? (s_Capability = new List<MachineCapability>
+          {
+              new MachineCapability { Name="ABS", Description = "Test", Value= "test" },
+              new MachineCapability { Name="BHS", Description = "Test", Value= "test" },
+              new MachineCapability { Name="LEOMS", Description = "Test", Value= "test" },
+              new MachineCapability { Name="LEO_", Description = "Test", Value= "test" }
+          });
     }
 }
