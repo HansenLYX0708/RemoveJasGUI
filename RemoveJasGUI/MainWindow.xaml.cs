@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace RemoveJasGUI
 {
@@ -38,6 +39,8 @@ namespace RemoveJasGUI
             this.Top = 0;
             this.Height = SystemParameters.WorkArea.Height;
             this.Width = SystemParameters.WorkArea.Width;
+            MyProgressBar.Visibility = Visibility.Hidden;
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,6 +54,7 @@ namespace RemoveJasGUI
         private void BtnClose_click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            
         }
 
         private void BtnMinimized_click(object sender, RoutedEventArgs e)
@@ -76,10 +80,51 @@ namespace RemoveJasGUI
             }
         }
 
+        private delegate void SetprogressBarHandle(int vaule);    //定义 代理函数 
+        private void SetprogressBar(int vaule)
+        {
+            if (this.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
+            {
+                this.Dispatcher.Invoke(new SetprogressBarHandle(this.SetprogressBar), vaule);
+            }
+            else
+            {
+                MyProgressBar.Value = vaule;
+                if (MyProgressBar.Value >= 10)
+                {
+                    MyProgressBar.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        private void ThreadProcess(object obj)
+        {
+            int i = 0;
+            while (true)
+            {
+                i++;
+                if (i > 10)
+                {
+                    i = 0;
+                }
+                SetprogressBar(i);
+                Thread.Sleep(1000);
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MachineCapability a = new MachineCapability { Name = "test", Description = "test1", Value = "Test1" };
-            this.Capabilities.Add(a);
+            // Test Add Capability
+            //MachineCapability a = new MachineCapability { Name = "test", Description = "test1", Value = "Test1" };
+            //this.Capabilities.Add(a);
+
+            // Test ProgressBar
+            MyProgressBar.Visibility = Visibility.Visible;
+            Thread mThread = new Thread(ThreadProcess);
+            MyProgressBar.Maximum = 10;
+            MyProgressBar.Value = 0;
+            mThread.Name = "线程测试";
+            mThread.Start();
         }
     }
 

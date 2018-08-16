@@ -4,12 +4,12 @@
         xmlns:local="clr-namespace:RemoveJasGUI" x:Class="RemoveJasGUI.MainWindow"
         Title="Amber Automation" 
         WindowState="Normal"
-        Height="820" Width="1400"
+        Height="900" Width="1400"
         MouseDown="Window_MouseDown" 
         Closing="Window_Closing"
-        >
+        Loaded="Window_Loaded">
     <!--AllowsTransparency="True" WindowStyle="None" Height="820" Width="1400" Loaded="Window_Loaded"-->
-    
+
     <!--WindowState="Maximized"-->
     <Window.Resources>
         <!--Rewrite template-->
@@ -69,6 +69,11 @@
                     <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
                 </Trigger>
             </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ProgressBarTemplate" TargetType="{x:Type ProgressBar}">
+            <Grid>
+                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+            </Grid>
         </ControlTemplate>
     </Window.Resources>
     <Grid x:Name="MainGrid"  ShowGridLines="False" Background="#FF999C9C">
@@ -215,7 +220,6 @@
                     <local:TestGridControl/>
                 </TabItem>
                 <TabItem Header="Teach" x:Name="TeachTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
-                    <local:TeachGridControl/>
 
                 </TabItem>
                 <TabItem Header="Device" x:Name="DeviceTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
@@ -224,10 +228,20 @@
                 <TabItem Header="JadePlus" x:Name="JadePlusTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
                     <local:JadePlusGridControl/>
                 </TabItem>
+                <TabItem Header="Statistics" x:Name="StatisticsTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
+                    <local:StatisticsControl/>
+                </TabItem>
+
+
             </TabControl>
         </Grid>
         <Grid Name="MainWindowBottom" Grid.ColumnSpan="2" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
-            <TextBlock Foreground="AliceBlue" Text="Test Info : Testing long strings does not make sense. Test TestTestTestTestTestTestTestTestTestTestTestTestTestTest" VerticalAlignment ="Center"  HorizontalAlignment="Left" Margin="5"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Foreground="AliceBlue" Text="Test Info : Testing long strings does not make sense. Test TestTestTestTestTestTestTestTestTestTestTestTestTestTest" VerticalAlignment ="Center"  HorizontalAlignment="Left" Margin="5"/>
+            <ProgressBar Name="MyProgressBar" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>

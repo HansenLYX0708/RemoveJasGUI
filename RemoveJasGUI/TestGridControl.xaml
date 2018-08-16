@@ -8,18 +8,26 @@
     <!--Height="540" Width="760"-->
     <UserControl.Resources>
         <ContextMenu x:Key="BladeMenu">
-            <MenuItem Name="BladeTeach" Header="Teach position"/>
+            <MenuItem Header="Load/Unload"/>
+            <MenuItem Name="BladeTeach" Header="Teach"/>
             <MenuItem Name="BladeMove" Header="Move to position"/>
             <MenuItem Name="BladeManager" Header="Manager Panel"/>
             <MenuItem Name="BladeTestInfo" Header="Test Panel"/>
+            <MenuItem Header="Move Camera to MEMS"/>
+            <MenuItem Header="Pick slider"/>
+            <MenuItem Header="Place slider"/>
         </ContextMenu>
         <ContextMenu x:Key="TrayMenu" >
-            <MenuItem Name="TrayTeach" Header="Teach position"/>
+            <MenuItem Header="Load/Unload"/>
+            <MenuItem Name="TrayTeach" Header="Teach"/>
             <MenuItem Name="TrayMove" Header="Move to position"/>
             <MenuItem Name="TrayInfo" Header="Tray Info"/>
+            <MenuItem Header="Move Camera to Tray"/>
+            <MenuItem Header="Pick slider"/>
+            <MenuItem Header="Place slider"/>
         </ContextMenu>
         <ControlTemplate x:Key="BladeButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="True">
+            <Grid ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
@@ -47,9 +55,52 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <ControlTemplate x:Key="BladeButtonTemplate1" TargetType="{x:Type Button}">
+            <Grid ShowGridLines="False" Margin="3" ContextMenu="{StaticResource BladeMenu}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="#FFCBC6C0" BorderThickness="2"/>
+                <Grid Grid.Row="0" Background="#FFDCDADA">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Blade SN" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="MEMS SN" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="MEMS Count" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Disk SN" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Disk Count" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Location" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <CheckBox Grid.ColumnSpan="2" Grid.Row="6" Content="Hot swap" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="0" Grid.Row="1" Background="#FFCBC6C0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Background="#FF4BD317"/>
+                    <Grid Grid.Column="1" Background="#FFDC1313"/>
+                    <Grid Grid.Column="2" Background="#FF7E7373"/>
+                    <TextBlock Grid.Column="3" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                </Grid>
 
+            </Grid>
+        </ControlTemplate>
         <ControlTemplate x:Key="TrayButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="True">
+            <Grid ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
@@ -77,35 +128,75 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <!--<ControlTemplate x:Key="TrayMenuTemplate" TargetType="{x:Type ContextMenu}">
-            <Border Margin="-10,0,0,0" x:Name="backgraound" Background="#FF3C4451" >
-                <Grid>
-                    <MenuItem Name="TrayTeach" Header="Teach position"/>
-                    <Separator></Separator>
-                    <MenuItem Name="TrayMove" Header="Move to position"/>
+        <ControlTemplate x:Key="TrayButtonTemplate1" TargetType="{x:Type Button}">
+            <Grid ShowGridLines="False" Margin="3" ContextMenu="{StaticResource TrayMenu}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="#FFCBC6C0" BorderThickness="2"/>
+                <Grid Grid.Row="0" Background="#FFDCDADA">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Number" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="SN" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Grade" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="JobName" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Grid Grid.ColumnSpan="2" Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="X" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="Y" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <CheckBox Grid.ColumnSpan="2" Grid.Row="5" Content="Auto Barcode" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                    <CheckBox Grid.ColumnSpan="2" Grid.Row="6" Content="STA" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
                 </Grid>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter TargetName="backgraound" Property="Background" Value="#01b0b7"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="backgraound" Property="Background" Value="#2d333d"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>-->
+                <Grid Grid.Column="0" Grid.Row="1" Background="#FFCBC6C0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Background="#FF4BD317"/>
+                    <Grid Grid.Column="1" Background="#FFDC1313"/>
+                    <Grid Grid.Column="2" Background="#FF7E7373"/>
+                    <TextBlock Grid.Column="3" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                </Grid>
+
+            </Grid>
+        </ControlTemplate>
     </UserControl.Resources>
 
-    <Grid Name="TestMain" ShowGridLines="True">
+    <Grid Name="TestMain" ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Name="OperaterAndInfo" ShowGridLines="True" Grid.Row="0">
+        <Grid Name="OperaterAndInfo" ShowGridLines="False" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -121,9 +212,30 @@
             </Grid>
             <Grid Grid.Column="1">
                 <TextBox Margin="5" />
-            </Grid> 
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Background="#FFD4D4D4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Text="Picker 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                </Grid>
+                <Grid Grid.Column="1" Background="#FFB8B6B6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Text="Picker 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Grid>
         </Grid>
-        <Grid Name="Blades" ShowGridLines="True" Grid.Row="1">
+        <Grid Name="Blades" ShowGridLines="False" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -132,7 +244,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button Name="Blade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
+                <Button Name="Blade1" Template="{StaticResource BladeButtonTemplate1}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Button Name="Blade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
@@ -147,7 +259,7 @@
                 <Button Name="Blade5" Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
         </Grid>
-        <Grid Name="Trays" ShowGridLines="True" Grid.Row="2">
+        <Grid Name="Trays" ShowGridLines="False" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -162,7 +274,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray1"/>
+                <Button Template="{StaticResource TrayButtonTemplate1}" Content="Tray1"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray2"/>
