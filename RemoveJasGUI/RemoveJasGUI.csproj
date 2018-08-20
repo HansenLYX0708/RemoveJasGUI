@@ -64,9 +64,6 @@
     <Compile Include="StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TeachGridControl.xaml.cs">
-      <DependentUpon>TeachGridControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TestGridControl.xaml.cs">
       <DependentUpon>TestGridControl.xaml</DependentUpon>
     </Compile>
@@ -94,10 +91,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="StatisticsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TeachGridControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -99,7 +99,35 @@
 
             </Grid>
         </ControlTemplate>
-        <ControlTemplate x:Key="TrayButtonTemplate" TargetType="{x:Type Button}">
+        <Grid ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Name="BackgroundImage" Source="Style/Image/BladeInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource BladeMenu}"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="BackgroundImage" Property="Source" Value="Style/Image/BladeActive.png"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="TrayButtonTemplate1" TargetType="{x:Type Button}">
             <Grid ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -128,7 +156,7 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <ControlTemplate x:Key="TrayButtonTemplate1" TargetType="{x:Type Button}">
+        <ControlTemplate x:Key="TrayButtonTemplate" TargetType="{x:Type Button}">
             <Grid ShowGridLines="False" Margin="3" ContextMenu="{StaticResource TrayMenu}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -244,7 +272,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button Name="Blade1" Template="{StaticResource BladeButtonTemplate1}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
+                <Button Name="Blade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Button Name="Blade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
@@ -274,7 +302,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0">
-                <Button Template="{StaticResource TrayButtonTemplate1}" Content="Tray1"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray1"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray2"/>

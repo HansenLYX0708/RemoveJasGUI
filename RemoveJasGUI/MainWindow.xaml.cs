@@ -31,6 +31,7 @@ namespace RemoveJasGUI
             {
                 this.Capabilities.Add(capability);
             }
+            MyProgressBar.Visibility = Visibility.Hidden;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -93,6 +94,7 @@ namespace RemoveJasGUI
                 if (MyProgressBar.Value >= 10)
                 {
                     MyProgressBar.Visibility = Visibility.Hidden;
+                    mThread.Abort();
                 }
             }
         }
@@ -102,7 +104,7 @@ namespace RemoveJasGUI
             int i = 0;
             while (true)
             {
-                i++;
+                i+=2;
                 if (i > 10)
                 {
                     i = 0;
@@ -112,6 +114,7 @@ namespace RemoveJasGUI
             }
         }
 
+        Thread mThread;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Test Add Capability
@@ -120,7 +123,7 @@ namespace RemoveJasGUI
 
             // Test ProgressBar
             MyProgressBar.Visibility = Visibility.Visible;
-            Thread mThread = new Thread(ThreadProcess);
+            mThread = new Thread(ThreadProcess);
             MyProgressBar.Maximum = 10;
             MyProgressBar.Value = 0;
             mThread.Name = "线程测试";
