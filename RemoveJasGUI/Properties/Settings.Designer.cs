@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RemoveJasGUI.Properties
+namespace JadeGUI.Properties
 {
 
 

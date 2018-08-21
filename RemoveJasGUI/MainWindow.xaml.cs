@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Threading;
 
-namespace RemoveJasGUI
+namespace JadeGUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
