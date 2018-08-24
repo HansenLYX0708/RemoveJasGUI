@@ -139,6 +139,12 @@
     <Resource Include="Style\Image\BladeInactive.png" />
     <Resource Include="Style\Image\TrayInactive.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ViewModel\JadeViewModel.csproj">
+      <Project>{5A41284D-654E-436B-B659-324478832819}</Project>
+      <Name>JadeViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

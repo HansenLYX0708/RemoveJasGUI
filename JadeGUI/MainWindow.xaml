@@ -4,10 +4,10 @@
         xmlns:local="clr-namespace:JadeGUI" x:Class="JadeGUI.MainWindow"
         Title="Amber Automation" 
         WindowState="Normal"
-        AllowsTransparency="True" WindowStyle="None"
-        Height="900" Width="1400"
+        Height="820" Width="1400"
         MouseDown="Window_MouseDown" 
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+    >
     <!--AllowsTransparency="True" WindowStyle="None" Height="820" Width="1400" Loaded="Window_Loaded"-->
 
     <!--WindowState="Maximized"-->
@@ -15,7 +15,7 @@
         <!--Rewrite template-->
         <ControlTemplate x:Key="ButtonEllipseTemplate" TargetType="{x:Type Button}">
             <Grid>
-                <Ellipse Height="140" HorizontalAlignment="Left" Fill="#FF343A46" Name="ellipse1" VerticalAlignment="Top" Width="140"/>
+                <Ellipse Height="140" HorizontalAlignment="Center" Fill="#FF343A46" Name="ellipse1" VerticalAlignment="Center" Width="140"/>
                 <Ellipse x:Name="ButtonEllipse" Width="100" Height="100" StrokeThickness="1" Fill="#3c4451" IsManipulationEnabled="True" IsHitTestVisible="True" OverridesDefaultStyle="True" Stroke="{x:Null}" SnapsToDevicePixels="False" StrokeLineJoin="Round" UseLayoutRounding="False" />
                 <Label x:Name="ButtonContent" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF97A9C6"/>
             </Grid>
@@ -80,17 +80,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Grid Name="MainWindowTop" Grid.ColumnSpan="2" Grid.Row="0" Background="#FF6B6A6C">
+        <Grid Name="MainWindowTop" Grid.ColumnSpan="3" Grid.Row="0" Background="#FF6B6A6C">
             <Button Content="X" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnClose_click"/>
             <Button Content="-" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMinimized_click" Margin="0,0,40,0"/>
         </Grid>
-        <Grid  x:Name="leftGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1">
+        <Grid Background="#FFD6DAD9" x:Name="leftGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -193,10 +194,10 @@
                 <TextBlock Grid.Column="0" Grid.Row="1" Text="Machine Number" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="2" Text="Machine Status" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="3" Text="Mode of Monitoring" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="MFG567A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="MACHINE DOWN" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Grid.Column="1" Grid.Row="3" SelectedIndex="0" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ComboBoxItem Content="NOMARL"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding MachineNum}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding MachineStatus}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="0"  Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ComboBoxItem Content="NOMARL" />
                     <ComboBoxItem Content="JORTER"/>
                     <ComboBoxItem Content="BCF"/>
                     <ComboBoxItem Content="AMBER"/>
@@ -214,7 +215,7 @@
                 </ListView>
             </Grid>
         </Grid>
-        <Grid x:Name="rightGrid" Margin="5,5,5,5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1">
+        <Grid Background="#FFD6DAD9" x:Name="middleGrid" Margin="5,5,5,5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1">
             <TabControl Margin="5,5,5,5"   x:Name="FuncTabControl">
                 <TabItem Header="Test" x:Name="TestTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
                     <local:TestGridControl/>
@@ -235,7 +236,9 @@
 
             </TabControl>
         </Grid>
-        <Grid Name="MainWindowBottom" Grid.ColumnSpan="2" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
+        <Grid Background="#FFD6DAD9" x:Name="rightGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
+        </Grid>
+        <Grid Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

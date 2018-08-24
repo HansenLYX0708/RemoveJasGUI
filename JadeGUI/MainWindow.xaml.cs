@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Threading;
 
+using ViewModel;
+
 namespace JadeGUI
 {
     /// <summary>
@@ -21,17 +23,22 @@ namespace JadeGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<MachineCapability> Capabilities { get; } = new ObservableCollection<MachineCapability>();
+        public AmberViewModel _AmberMachine;
+        //public ObservableCollection<MachineCapability> Capabilities { get; } = new ObservableCollection<MachineCapability>();
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
-            var capabilities = new CapabilityRepository().GetCapability();
-            foreach (var capability in capabilities)
-            {
-                this.Capabilities.Add(capability);
-            }
+            //this.DataContext = this;
+            //var capabilities = new CapabilityRepository().GetCapability();
+            //foreach (var capability in capabilities)
+            //{
+            //    this.Capabilities.Add(capability);
+            //}
             MyProgressBar.Visibility = Visibility.Hidden;
+
+            _AmberMachine = new AmberViewModel();
+            ButtomGrid.DataContext = _AmberMachine;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -81,7 +88,7 @@ namespace JadeGUI
             }
         }
 
-        private delegate void SetprogressBarHandle(int vaule);    //定义 代理函数 
+        private delegate void SetprogressBarHandle(int vaule); 
         private void SetprogressBar(int vaule)
         {
             if (this.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
@@ -126,7 +133,7 @@ namespace JadeGUI
             mThread = new Thread(ThreadProcess);
             MyProgressBar.Maximum = 10;
             MyProgressBar.Value = 0;
-            mThread.Name = "线程测试";
+            mThread.Name = "test test";
             mThread.Start();
         }
     }
@@ -138,17 +145,17 @@ namespace JadeGUI
         public string Value { get; set; }
     }
 
-    public sealed class CapabilityRepository
-    {
-        private static IEnumerable<MachineCapability> s_Capability;
+    //public sealed class CapabilityRepository
+    //{
+    //    private static IEnumerable<MachineCapability> s_Capability;
 
-        public IEnumerable<MachineCapability> GetCapability() =>
-          s_Capability ?? (s_Capability = new List<MachineCapability>
-          {
-              new MachineCapability { Name="ABS", Description = "Test", Value= "test" },
-              new MachineCapability { Name="BHS", Description = "Test", Value= "test" },
-              new MachineCapability { Name="LEOMS", Description = "Test", Value= "test" },
-              new MachineCapability { Name="LEO_", Description = "Test", Value= "test" }
-          });
-    }
+    //    public IEnumerable<MachineCapability> GetCapability() =>
+    //      s_Capability ?? (s_Capability = new List<MachineCapability>
+    //      {
+    //          new MachineCapability { Name="ABS", Description = "Test", Value= "test" },
+    //          new MachineCapability { Name="BHS", Description = "Test", Value= "test" },
+    //          new MachineCapability { Name="LEOMS", Description = "Test", Value= "test" },
+    //          new MachineCapability { Name="LEO_", Description = "Test", Value= "test" }
+    //      });
+    //}
 }
