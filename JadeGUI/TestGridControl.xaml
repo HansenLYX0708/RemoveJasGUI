@@ -1,5 +1,4 @@
-﻿
-<UserControl x:Class="JadeGUI.TestGridControl"
+﻿<UserControl x:Class="JadeGUI.TestGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,6 +25,15 @@
             <MenuItem Header="Pick slider"/>
             <MenuItem Header="Place slider"/>
         </ContextMenu>
+        <ContextMenu x:Key="PickerMenu" >
+            <MenuItem Header="Load/Unload"/>
+            <MenuItem Header="Teach"/>
+            <MenuItem Header="Move to position"/>
+            <MenuItem Header="Tray Info"/>
+            <MenuItem Header="Move Camera to Tray"/>
+            <MenuItem Header="Pick slider"/>
+            <MenuItem Header="Place slider"/>
+        </ContextMenu>
         <ControlTemplate x:Key="BladeButtonTemplate" TargetType="{x:Type Button}">
             <Grid ShowGridLines="False">
                 <Grid.ColumnDefinitions>
@@ -40,7 +48,7 @@
                 </Grid.RowDefinitions>
                 <Image Name="BackgroundImage" Source="Style/Image/BladeInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource BladeMenu}"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="Black" FontFamily="Arial" FontSize="16"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -113,7 +121,7 @@
                 </Grid.RowDefinitions>
                 <Image Name="BackgroundImage" Source="Style/Image/TrayInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource TrayMenu}"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="Black" FontFamily="Arial" FontSize="16"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -184,6 +192,37 @@
 
             </Grid>
         </ControlTemplate>
+        <ControlTemplate x:Key="PickerButtonTemplate" TargetType="{x:Type Button}">
+            <Grid ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Grid.Row="0" Name="PickerContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Style/Image/Picker.png" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource PickerMenu}"/>
+                <Rectangle Grid.Column="1" Grid.Row="2" Width="100" Height="10" VerticalAlignment="Top" Fill="#FF35C72E" Visibility="{Binding }"/>
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="3" Name="SliderContent" Text="Slider Num" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <!--<Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="BackgroundImage" Property="Source"  Value="Style/Image/TrayActive.png"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
+                </Trigger>-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="PickerContent" Property="Foreground" Value="#FFF7F9FB"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="PickerContent" Property="Foreground" Value="#444d5c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </UserControl.Resources>
 
     <Grid Name="TestMain" ShowGridLines="False">
@@ -207,8 +246,7 @@
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" Content="Start Test" Margin="5"/>
                 <Button Grid.Row="1" Grid.Column="0" Content="Pause Test" Margin="5"/>
-                <Button Grid.Row="2" Grid.Column="0" Content="Abort Test" Margin="5"/>
-                <Button Grid.Row="3" Grid.Column="0" Content="Resume Test" Margin="5"/>
+                <Button Grid.Row="2" Grid.Column="0" Content="Configuration" Margin="5"/>
             </Grid>
             <Grid Grid.Column="1">
                 <TextBox Margin="5" />
@@ -218,21 +256,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Background="#FFD4D4D4">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" Text="Picker 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Grid.Column="0" Content="Picker1" Template="{StaticResource PickerButtonTemplate}">
 
-                </Grid>
-                <Grid Grid.Column="1" Background="#FFB8B6B6">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" Text="Picker 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
+                </Button>
+                <Button Grid.Column="1" Content="Picker2" Template="{StaticResource PickerButtonTemplate}">
+
+                </Button>
             </Grid>
         </Grid>
         <Grid Name="Blades" ShowGridLines="False" Grid.Row="1" Margin="5" Background="#FFEFF1F1">

@@ -4,6 +4,7 @@
         xmlns:local="clr-namespace:JadeGUI" x:Class="JadeGUI.MainWindow"
         Title="Amber Automation" 
         WindowState="Normal"
+        AllowsTransparency="True" WindowStyle="None"
         Height="820" Width="1400"
         MouseDown="Window_MouseDown" 
         Closing="Window_Closing"
@@ -15,8 +16,8 @@
         <!--Rewrite template-->
         <ControlTemplate x:Key="ButtonEllipseTemplate" TargetType="{x:Type Button}">
             <Grid>
-                <Ellipse Height="140" HorizontalAlignment="Center" Fill="#FF343A46" Name="ellipse1" VerticalAlignment="Center" Width="140"/>
-                <Ellipse x:Name="ButtonEllipse" Width="100" Height="100" StrokeThickness="1" Fill="#3c4451" IsManipulationEnabled="True" IsHitTestVisible="True" OverridesDefaultStyle="True" Stroke="{x:Null}" SnapsToDevicePixels="False" StrokeLineJoin="Round" UseLayoutRounding="False" />
+                <Ellipse Height="140" HorizontalAlignment="Center" Fill="#FF6B6A6C" Name="ellipse1" VerticalAlignment="Center" Width="140"/>
+                <Ellipse x:Name="ButtonEllipse" Width="100" Height="100" StrokeThickness="1" Fill="#FF646364" IsManipulationEnabled="True" IsHitTestVisible="True" OverridesDefaultStyle="True" Stroke="{x:Null}" SnapsToDevicePixels="False" StrokeLineJoin="Round" UseLayoutRounding="False" />
                 <Label x:Name="ButtonContent" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF97A9C6"/>
             </Grid>
             <ControlTemplate.Triggers>
@@ -237,6 +238,14 @@
             </TabControl>
         </Grid>
         <Grid Background="#FFD6DAD9" x:Name="rightGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="10" Text="Properities" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF2E2E2E" FontFamily="Arial" FontSize="20"/>
+            <Grid Grid.Row="1" Margin="5" Background="#FFFBF9F9">
+                
+            </Grid>
         </Grid>
         <Grid Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
             <Grid.ColumnDefinitions>
