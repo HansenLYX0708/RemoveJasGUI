@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RemoveJasGUI
+namespace JadeGUI
 {
     /// <summary>
     /// TeachTabControl.xaml 的交互逻辑
@@ -27,8 +27,7 @@ namespace RemoveJasGUI
 
         private void Btn_BladeDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TestInstance testInstance = new TestInstance();
-            testInstance.ShowDialog();
+            
         }
 
         private void Btn_BladeClick(object sender, RoutedEventArgs e)

@@ -64,6 +64,9 @@
     <Compile Include="StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeachGridControl.xaml.cs">
+      <DependentUpon>TeachGridControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestGridControl.xaml.cs">
       <DependentUpon>TestGridControl.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,14 @@
     <Page Include="StatisticsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Templates\InitDictionaryTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeachGridControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TestGridControl.xaml">
       <SubType>Designer</SubType>
@@ -128,22 +139,23 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Style\Image\TrayActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Style\Image\Datum.png" />
-    <Resource Include="Style\Image\Picker.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Style\Image\BladeActive.png" />
-    <Resource Include="Style\Image\BladeInactive.png" />
-    <Resource Include="Style\Image\TrayInactive.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ViewModel\JadeViewModel.csproj">
       <Project>{5A41284D-654E-436B-B659-324478832819}</Project>
       <Name>JadeViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Style\Templates\Images\BladeActive.png" />
+    <Resource Include="Style\Templates\Images\BladeInactive.png" />
+    <Resource Include="Style\Templates\Images\Picker.png" />
+    <Resource Include="Style\Templates\Images\TrayActive.png" />
+    <Resource Include="Style\Templates\Images\TrayInactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Style\Image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Style\Templates\Images\CrosshairsTemplate.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

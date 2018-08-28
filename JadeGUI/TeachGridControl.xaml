@@ -1,214 +1,76 @@
-﻿<UserControl x:Class="RemoveJasGUI.TeachGridControl"
+﻿<UserControl x:Class="JadeGUI.TeachGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RemoveJasGUI"
+             xmlns:local="clr-namespace:JadeGUI"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <ContextMenu x:Key="BladeMenu">
-            <MenuItem Header="Load/Unload"/>
-            <MenuItem Name="BladeTeach" Header="Teach"/>
-            <MenuItem Name="BladeMove" Header="Move to position"/>
-            <MenuItem Name="BladeManager" Header="Manager Panel"/>
-            <MenuItem Name="BladeTestInfo" Header="Test Panel"/>
-            <MenuItem Header="Move Camera to MEMS"/>
-            <MenuItem Header="Pick slider"/>
-            <MenuItem Header="Place slider"/>
-        </ContextMenu>
-        <ContextMenu x:Key="TrayMenu" >
-            <MenuItem Name="TrayTeach" Header="Teach"/>
-            <MenuItem Name="TrayMove" Header="Move to position"/>
-            <MenuItem Name="TrayInfo" Header="Tray Info"/>
-            <MenuItem Header="Move Camera to Tray"/>
-            <MenuItem Header="Pick slider"/>
-            <MenuItem Header="Place slider"/>
-        </ContextMenu>
-        <ContextMenu x:Key="DatumMenu">
-            <MenuItem Header="Teach Datum"/>
-            <MenuItem Header="Down Camera MPP"/>
-            <MenuItem Header="Up Camera MPP"/>
-            <MenuItem Header="Down Camera Z"/>
-            <MenuItem Header="Move to Clear"/>
-            <MenuItem Header="Align Slider"/>
-        </ContextMenu>
-        <ContextMenu x:Key="PickerMenu">
-            <MenuItem Header="Z Height"/>
-            <MenuItem Header="Nozzle"/>
-            <MenuItem Header="Center"/>
-            <MenuItem Header="Move to Up camera"/>
-        </ContextMenu>
-        <ControlTemplate x:Key="BladeButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Name="BackgroundImage" Source="Style/Image/BladeInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource BladeMenu}"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="BackgroundImage" Property="Source" Value="Style/Image/BladeActive.png"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="TrayButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Name="BackgroundImage" Source="Style/Image/TrayInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource TrayMenu}"/>
-
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="BackgroundImage" Property="Source"  Value="Style/Image/TrayActive.png"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="DatumButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Name="BackgroundImage" Source="Style/Image/Datum.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource DatumMenu}"/>
-
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="BackgroundImage" Property="Source" Value="Style/Image/Datum.png"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="PickerButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Name="BackgroundImage" Source="Style/Image/Picker.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource PickerMenu}"/>
-
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="BackgroundImage" Property="Source" Value="Style/Image/Picker.png"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-    </UserControl.Resources>
-
-    <Grid Name="TeachMain" ShowGridLines="True">
+    <Grid Name="TeachMain" ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Name="DatumAndPicker" ShowGridLines="True" Grid.Row="0">
+        <Grid Name="OperaterAndInfo" ShowGridLines="False" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Template="{StaticResource DatumButtonTemplate}" Content="Datum"/>
+                <Button Grid.Column="0" Content="UpCameraPrimaryDatum" Template="{StaticResource UpCameraPrimaryDatumButtonTemplate}">
+
+                </Button>
+                <Button Grid.Column="1" Content="DownCameraPrimaryDatum" Template="{StaticResource DownCameraPrimaryDatumButtonTemplate}">
+
+                </Button>
             </Grid>
             <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Template="{StaticResource PickerButtonTemplate}" Content="Picker1"/>
-                <Button Grid.Column="1" Template="{StaticResource PickerButtonTemplate}" Content="Picker2"/>
-            </Grid>
-        </Grid>
-        <Grid Name="Blades" ShowGridLines="True" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+
             </Grid>
             <Grid Grid.Column="2">
-                <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade3" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Picker1" Template="{StaticResource PickerButtonTemplate}">
+
+                </Button>
+                <Button Grid.Column="1" Content="Picker2" Template="{StaticResource PickerButtonTemplate}">
+
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Name="Blades" ShowGridLines="False" Grid.Row="1" Margin="5" Background="#FFEFF1F1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Button Name="Blade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button Name="Blade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Button Name="Blade3" Template="{StaticResource BladeButtonTemplate}" Content="Blade3" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
             <Grid Grid.Column="3">
-                <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade4" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                <Button Name="Blade4" Template="{StaticResource BladeButtonTemplate}" Content="Blade4" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
             <Grid Grid.Column="5">
-                <Button Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                <Button Name="Blade5" Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
             </Grid>
-
         </Grid>
-        <Grid Name="Trays" ShowGridLines="True" Grid.Row="2">
+        <Grid Name="Trays" ShowGridLines="False" Grid.Row="2" Margin="5" Background="#FFEFF1F1">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -223,26 +85,25 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray1" ContextMenu="{StaticResource TrayMenu}"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray1"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray2" ContextMenu="{StaticResource TrayMenu}"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray2"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="2">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray3" ContextMenu="{StaticResource TrayMenu}"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray3"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="3">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray4" ContextMenu="{StaticResource TrayMenu}"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray4"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="4">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray5" ContextMenu="{StaticResource TrayMenu}"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray5"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="5">
-                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray6" ContextMenu="{StaticResource TrayMenu}"/>
+                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray6"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="6">
                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray7"/>
-
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray8"/>

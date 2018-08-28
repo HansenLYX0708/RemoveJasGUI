@@ -19,8 +19,6 @@ namespace JadeGUI
     /// </summary>
     public partial class TestGridControl : UserControl
     {
-        
-
         public TestGridControl()
         {
             InitializeComponent();

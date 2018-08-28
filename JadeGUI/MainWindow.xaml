@@ -4,79 +4,13 @@
         xmlns:local="clr-namespace:JadeGUI" x:Class="JadeGUI.MainWindow"
         Title="Amber Automation" 
         WindowState="Normal"
-        AllowsTransparency="True" WindowStyle="None"
         Height="820" Width="1400"
         MouseDown="Window_MouseDown" 
         Closing="Window_Closing"
     >
     <!--AllowsTransparency="True" WindowStyle="None" Height="820" Width="1400" Loaded="Window_Loaded"-->
-
     <!--WindowState="Maximized"-->
-    <Window.Resources>
-        <!--Rewrite template-->
-        <ControlTemplate x:Key="ButtonEllipseTemplate" TargetType="{x:Type Button}">
-            <Grid>
-                <Ellipse Height="140" HorizontalAlignment="Center" Fill="#FF6B6A6C" Name="ellipse1" VerticalAlignment="Center" Width="140"/>
-                <Ellipse x:Name="ButtonEllipse" Width="100" Height="100" StrokeThickness="1" Fill="#FF646364" IsManipulationEnabled="True" IsHitTestVisible="True" OverridesDefaultStyle="True" Stroke="{x:Null}" SnapsToDevicePixels="False" StrokeLineJoin="Round" UseLayoutRounding="False" />
-                <Label x:Name="ButtonContent" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF97A9C6"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="ButtonEllipse" Property="Fill" Value="#01b0b7" ></Setter>
-                    <Setter TargetName="ButtonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="ButtonEllipse" Property="Fill" Value="#187c80"/>
-                    <Setter TargetName="ButtonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="ButtonEllipse" Property="Fill" Value="#2d333d"/>
-                    <Setter TargetName="ButtonContent" Property="Foreground" Value="#444D5C"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="TabItemTemplate" TargetType="{x:Type TabItem}">
-            <Grid>
-                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-                <TextBlock Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Header}" Foreground="#FF97A9C6" FontFamily="Arial"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsSelected"  Value="True">
-                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FFC0CECF" />
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="buttonBackground" Property="Fill" Value="#2d333d"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
-            <Grid>
-                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-                <TextBlock Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="#FF97A9C6" FontFamily="Arial" FontSize="16"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FFC0CECF" />
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FFBCD7D8"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="buttonBackground" Property="Fill" Value="#2d333d"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="ProgressBarTemplate" TargetType="{x:Type ProgressBar}">
-            <Grid>
-                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-            </Grid>
-        </ControlTemplate>
-    </Window.Resources>
+    
     <Grid x:Name="MainGrid"  ShowGridLines="False" Background="#FF999C9C">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -118,7 +52,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="10" Content="Devices" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
+                        <Button Grid.Column="0" Margin="10" Content="Move to clear" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
                         <Button Grid.Column="1" Margin="10" Content="Configuration" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
                     </Grid>
                 </Grid>
@@ -222,27 +156,23 @@
                     <local:TestGridControl/>
                 </TabItem>
                 <TabItem Header="Teach" x:Name="TeachTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
-
+                    <local:TeachGridControl/>
                 </TabItem>
                 <TabItem Header="Device" x:Name="DeviceTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
                     <local:DeviceGridControl/>
-                </TabItem>
-                <TabItem Header="JadePlus" x:Name="JadePlusTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
-                    <local:JadePlusGridControl/>
                 </TabItem>
                 <TabItem Header="Statistics" x:Name="StatisticsTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
                     <local:StatisticsControl/>
                 </TabItem>
 
-
             </TabControl>
         </Grid>
         <Grid Background="#FFD6DAD9" x:Name="rightGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="10" Text="Properities" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF2E2E2E" FontFamily="Arial" FontSize="20"/>
+            <TextBlock Grid.Row="0" Margin="10,0,0,0" Text="Properities" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF2E2E2E" FontFamily="Arial" FontSize="16"/>
             <Grid Grid.Row="1" Margin="5" Background="#FFFBF9F9">
                 
             </Grid>
