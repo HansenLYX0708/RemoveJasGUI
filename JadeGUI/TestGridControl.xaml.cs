@@ -32,9 +32,6 @@ namespace JadeGUI
 
         private void Btn_BladeClick(object sender, RoutedEventArgs e)
         {
-            //testInstance.Hide();
         }
-
-        
     }
 }

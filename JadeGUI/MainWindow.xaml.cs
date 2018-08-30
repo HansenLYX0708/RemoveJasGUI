@@ -23,7 +23,9 @@ namespace JadeGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private System.Windows.Forms.PropertyGrid OptionsPropertyGrid;
         public AmberViewModel _AmberMachine;
+
         //public ObservableCollection<MachineCapability> Capabilities { get; } = new ObservableCollection<MachineCapability>();
         public MainWindow()
         {
@@ -34,11 +36,6 @@ namespace JadeGUI
             //{
             //    this.Capabilities.Add(capability);
             //}
-            MyProgressBar.Visibility = Visibility.Hidden;
-
-            _AmberMachine = new AmberViewModel();
-            ButtomGrid.DataContext = _AmberMachine;
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -47,9 +44,52 @@ namespace JadeGUI
             this.Top = 0;
             this.Height = SystemParameters.WorkArea.Height;
             this.Width = SystemParameters.WorkArea.Width;
-            MyProgressBar.Visibility = Visibility.Hidden;
-
+            _AmberMachine = new AmberViewModel();
+            leftGrid.DataContext = _AmberMachine.CommonInfo;
+            FuncTabControl.DataContext = _AmberMachine.PageEnableControl;
         }
+
+        public class AppSettings
+        {
+            private bool saveOnClose = true;
+            private string greetingText = "欢迎使用应用程序！";
+            private int itemsInMRU = 4;
+            private int maxRepeatRate = 10;
+            private bool settingsChanged = false;
+            private string appVersion = "1.0";
+
+            public bool SaveOnClose
+            {
+                get { return saveOnClose; }
+                set { saveOnClose = value; }
+            }
+            public string GreetingText
+            {
+                get { return greetingText; }
+                set { greetingText = value; }
+            }
+            public int MaxRepeatRate
+            {
+                get { return maxRepeatRate; }
+                set { maxRepeatRate = value; }
+            }
+            public int ItemsInMRUList
+            {
+                get { return itemsInMRU; }
+                set { itemsInMRU = value; }
+            }
+            public bool SettingsChanged
+            {
+                get { return settingsChanged; }
+                set { settingsChanged = value; }
+            }
+            public string AppVersion
+            {
+                get { return appVersion; }
+                set { appVersion = value; }
+            }
+        }
+
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -62,7 +102,6 @@ namespace JadeGUI
         private void BtnClose_click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            
         }
 
         private void BtnMinimized_click(object sender, RoutedEventArgs e)
@@ -89,39 +128,39 @@ namespace JadeGUI
         }
 
         private delegate void SetprogressBarHandle(int vaule); 
-        private void SetprogressBar(int vaule)
-        {
-            if (this.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
-            {
-                this.Dispatcher.Invoke(new SetprogressBarHandle(this.SetprogressBar), vaule);
-            }
-            else
-            {
-                MyProgressBar.Value = vaule;
-                if (MyProgressBar.Value >= 10)
-                {
-                    MyProgressBar.Visibility = Visibility.Hidden;
-                    mThread.Abort();
-                }
-            }
-        }
+        //private void SetprogressBar(int vaule)
+        //{
+        //    if (this.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
+        //    {
+        //        this.Dispatcher.Invoke(new SetprogressBarHandle(this.SetprogressBar), vaule);
+        //    }
+        //    else
+        //    {
+        //        MyProgressBar.Value = vaule;
+        //        if (MyProgressBar.Value >= 10)
+        //        {
+        //            MyProgressBar.Visibility = Visibility.Hidden;
+        //            mThread.Abort();
+        //        }
+        //    }
+        //}
 
-        private void ThreadProcess(object obj)
-        {
-            int i = 0;
-            while (true)
-            {
-                i+=2;
-                if (i > 10)
-                {
-                    i = 0;
-                }
-                SetprogressBar(i);
-                Thread.Sleep(1000);
-            }
-        }
+        //private void ThreadProcess(object obj)
+        //{
+        //    int i = 0;
+        //    while (true)
+        //    {
+        //        i+=2;
+        //        if (i > 10)
+        //        {
+        //            i = 0;
+        //        }
+        //        SetprogressBar(i);
+        //        Thread.Sleep(1000);
+        //    }
+        //}
 
-        Thread mThread;
+        //Thread mThread;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Test Add Capability
@@ -129,13 +168,22 @@ namespace JadeGUI
             //this.Capabilities.Add(a);
 
             // Test ProgressBar
-            MyProgressBar.Visibility = Visibility.Visible;
-            mThread = new Thread(ThreadProcess);
-            MyProgressBar.Maximum = 10;
-            MyProgressBar.Value = 0;
-            mThread.Name = "test test";
-            mThread.Start();
+            //MyProgressBar.Visibility = Visibility.Visible;
+            //mThread = new Thread(ThreadProcess);
+            //MyProgressBar.Maximum = 10;
+            //MyProgressBar.Value = 0;
+            //mThread.Name = "test test";
+            //mThread.Start();
+
+
+
+
         }
+
+        private void Btn_BladeDoubleClick(object sender, RoutedEventArgs e)
+        { }
+        private void Btn_BladeClick(object sender, RoutedEventArgs e)
+        { }
     }
 
     public sealed class MachineCapability

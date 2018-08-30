@@ -42,7 +42,12 @@
   <ItemGroup>
     <Compile Include="AmberViewModel.cs" />
     <Compile Include="BladeViewModel.cs" />
+    <Compile Include="DatumViewModel.cs" />
+    <Compile Include="PageEnableControl.cs" />
+    <Compile Include="PickerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestMachineViewModel.cs" />
+    <Compile Include="TrayViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

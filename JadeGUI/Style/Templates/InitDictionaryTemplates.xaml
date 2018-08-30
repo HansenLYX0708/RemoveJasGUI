@@ -34,8 +34,8 @@
                 <Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="buttonBackground" Property="Fill" Value="#2d333d"/>
-                <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
+                <Setter TargetName="buttonBackground" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="buttonContent" Property="Visibility" Value="Hidden"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -46,8 +46,8 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="buttonBackground" Property="Fill" Value="White" />
-                <Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>
+                <Setter TargetName="buttonBackground" Property="Fill" Value="#01b0b7" />
+                <!--<Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>-->
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="buttonBackground" Property="Fill" Value="#FFBCD7D8"/>
@@ -64,7 +64,6 @@
             <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
         </Grid>
     </ControlTemplate>
-
     <!--Menu-->
     <ContextMenu x:Key="BladeMenu">
         <MenuItem Header="Load/Unload"/>
@@ -90,12 +89,11 @@
         <MenuItem Header="Center"/>
         <MenuItem Header="Z Height"/>
         <MenuItem Header="Align Slider"/>
+        <MenuItem Header="Move to UpCamera"/>
     </ContextMenu>
     <ContextMenu x:Key="UpCameraPrimaryDatumMenu" >
         <MenuItem Header="UpCameraMPP"/>
         <MenuItem Header="DownCamera at UpCamera"/>
-        <MenuItem Header="Move Picker1 to UpCamera"/>
-        <MenuItem Header="Move Picker2 to UpCamera"/>
     </ContextMenu>
     <ContextMenu x:Key="DownCameraPrimaryDatumMenu" >
         <MenuItem Header="DownCameraMPP"/>
@@ -122,12 +120,12 @@
             <TextBlock Grid.ColumnSpan="3" Grid.Row="3" Name="SliderContent" Text="Slider Num" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
         <ControlTemplate.Triggers>
-            <!--<Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="BackgroundImage" Property="Source"  Value="Style/Image/TrayActive.png"/>
-                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
-                </Trigger>-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <!--<Setter TargetName="BackgroundImage" Property="Source"  Value="Images/Picker.png"/>-->
+                <Setter TargetName="PickerContent" Property="Foreground" Value="#FF97A9C6"/>
+                </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="PickerContent" Property="Foreground" Value="#FFF7F9FB"/>
+                <Setter TargetName="PickerContent" Property="Foreground" Value="#01b0b7"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="PickerContent" Property="Foreground" Value="#444d5c"/>
@@ -157,7 +155,7 @@
                 <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
+                <Setter TargetName="buttonContent" Property="Foreground" Value="#01b0b7"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
@@ -231,7 +229,7 @@
                 <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
+                <Setter TargetName="buttonContent" Property="Foreground" Value="#01b0b7"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
