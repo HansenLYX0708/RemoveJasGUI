@@ -160,7 +160,22 @@ namespace JadeGUI
         //    }
         //}
 
-        //Thread mThread;
+
+        public class tmpclass
+        {
+            //[TypeConverter(typeof(ExpandableObjectConverter))]
+            //public List<string> StringList { get; set; }
+            //public List<int> IntList { get; set; }
+            //public List<object> ObjectList { get; set; }
+            //public List<tmpclass> TMPlst { get; set; }
+
+            public string Name { get; set; }
+            public string test { get; set; }
+            public string test1 { get; set; }
+            public string test2 { get; set; }
+        }
+
+        public tmpclass tmpClassInstace;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Test Add Capability
@@ -175,7 +190,14 @@ namespace JadeGUI
             //mThread.Name = "test test";
             //mThread.Start();
 
+            tmpClassInstace = new tmpclass();
 
+            tmpClassInstace.Name = "aaa";
+            tmpClassInstace.test = "test";
+            tmpClassInstace.test1 = "test1";
+            tmpClassInstace.test2 = "test2";
+
+            myGrid.Instance = tmpClassInstace;
 
 
         }

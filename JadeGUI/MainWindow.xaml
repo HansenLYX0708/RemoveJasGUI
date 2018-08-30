@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:JadeGUI" x:Class="JadeGUI.MainWindow"
         xmlns:my="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wpg="clr-namespace:WPG;assembly=WPG"
         Title="Amber Automation" 
         WindowState="Normal"
         Height="820" Width="1400"
@@ -447,7 +448,9 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Margin="10,0,0,0" Text="Properities" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF2E2E2E" FontFamily="Arial" FontSize="16"/>
             <Grid Name="PropertyRegion" Grid.Row="1" Margin="5" Background="#FFFBF9F9">
-                <!--<PropertyGridControl:CustomPropertyGrid x:Name="PropertyGrid"/>-->
+                <wpg:PropertyGrid   Foreground="White"   Name="myGrid" ShowDescription="True"  Margin="0,40,0,0"/>
+                <!--Instance="{Binding ElementName=button1}" Canvas.Left="308" Canvas.Top="11" DataContext="{Binding}" ShowPreview="True" AutomaticlyExpandObjects="False"-->
+                <Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0"  Name="button1" VerticalAlignment="Top" Width="75" Click="Button_Click" />
             </Grid>
         </Grid>
         <Grid Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
