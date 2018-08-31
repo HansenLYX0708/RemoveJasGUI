@@ -23,95 +23,45 @@ namespace JadeGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.Windows.Forms.PropertyGrid OptionsPropertyGrid;
         public AmberViewModel _AmberMachine;
-
-        //public ObservableCollection<MachineCapability> Capabilities { get; } = new ObservableCollection<MachineCapability>();
         public MainWindow()
         {
             InitializeComponent();
-            //this.DataContext = this;
-            //var capabilities = new CapabilityRepository().GetCapability();
-            //foreach (var capability in capabilities)
-            //{
-            //    this.Capabilities.Add(capability);
-            //}
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Left = 0;
-            this.Top = 0;
-            this.Height = SystemParameters.WorkArea.Height;
-            this.Width = SystemParameters.WorkArea.Width;
+            //this.Left = 0;
+            //this.Top = 0;
+            //this.Height = SystemParameters.WorkArea.Height;
+            //this.Width = SystemParameters.WorkArea.Width;
             _AmberMachine = new AmberViewModel();
             leftGrid.DataContext = _AmberMachine.CommonInfo;
             FuncTabControl.DataContext = _AmberMachine.PageEnableControl;
         }
 
-        public class AppSettings
-        {
-            private bool saveOnClose = true;
-            private string greetingText = "欢迎使用应用程序！";
-            private int itemsInMRU = 4;
-            private int maxRepeatRate = 10;
-            private bool settingsChanged = false;
-            private string appVersion = "1.0";
-
-            public bool SaveOnClose
-            {
-                get { return saveOnClose; }
-                set { saveOnClose = value; }
-            }
-            public string GreetingText
-            {
-                get { return greetingText; }
-                set { greetingText = value; }
-            }
-            public int MaxRepeatRate
-            {
-                get { return maxRepeatRate; }
-                set { maxRepeatRate = value; }
-            }
-            public int ItemsInMRUList
-            {
-                get { return itemsInMRU; }
-                set { itemsInMRU = value; }
-            }
-            public bool SettingsChanged
-            {
-                get { return settingsChanged; }
-                set { settingsChanged = value; }
-            }
-            public string AppVersion
-            {
-                get { return appVersion; }
-                set { appVersion = value; }
-            }
-        }
-
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+
                 DragMove();
             }
         }
 
         private void BtnClose_click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BtnMinimized_click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void BtnMaximized_click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -127,55 +77,10 @@ namespace JadeGUI
             }
         }
 
-        private delegate void SetprogressBarHandle(int vaule); 
-        //private void SetprogressBar(int vaule)
-        //{
-        //    if (this.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
-        //    {
-        //        this.Dispatcher.Invoke(new SetprogressBarHandle(this.SetprogressBar), vaule);
-        //    }
-        //    else
-        //    {
-        //        MyProgressBar.Value = vaule;
-        //        if (MyProgressBar.Value >= 10)
-        //        {
-        //            MyProgressBar.Visibility = Visibility.Hidden;
-        //            mThread.Abort();
-        //        }
-        //    }
-        //}
+        private delegate void SetprogressBarHandle(int vaule);
 
-        //private void ThreadProcess(object obj)
-        //{
-        //    int i = 0;
-        //    while (true)
-        //    {
-        //        i+=2;
-        //        if (i > 10)
-        //        {
-        //            i = 0;
-        //        }
-        //        SetprogressBar(i);
-        //        Thread.Sleep(1000);
-        //    }
-        //}
-
-
-        public class tmpclass
-        {
-            //[TypeConverter(typeof(ExpandableObjectConverter))]
-            //public List<string> StringList { get; set; }
-            //public List<int> IntList { get; set; }
-            //public List<object> ObjectList { get; set; }
-            //public List<tmpclass> TMPlst { get; set; }
-
-            public string Name { get; set; }
-            public string test { get; set; }
-            public string test1 { get; set; }
-            public string test2 { get; set; }
-        }
-
-        public tmpclass tmpClassInstace;
+        private void Btn_BladeDoubleClick(object sender, RoutedEventArgs e)
+        { }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Test Add Capability
@@ -190,42 +95,103 @@ namespace JadeGUI
             //mThread.Name = "test test";
             //mThread.Start();
 
-            tmpClassInstace = new tmpclass();
+            _AmberMachine.m_Blades[0].Name = "Blade1";
 
-            tmpClassInstace.Name = "aaa";
-            tmpClassInstace.test = "test";
-            tmpClassInstace.test1 = "test1";
-            tmpClassInstace.test2 = "test2";
-
-            myGrid.Instance = tmpClassInstace;
-
+            myPerprotyGrid.Refresh();
 
         }
-
-        private void Btn_BladeDoubleClick(object sender, RoutedEventArgs e)
-        { }
+        
         private void Btn_BladeClick(object sender, RoutedEventArgs e)
-        { }
+        {
+            Button btn = sender as Button;
+            switch (btn.Content.ToString())
+            {
+                case "Blade1":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Blades[0];
+                    break;
+                case "Blade2":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Blades[1];
+                    break;
+                case "Blade3":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Blades[2];
+                    break;
+                case "Blade4":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Blades[3];
+                    break;
+                case "Blade5":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Blades[4];
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Btn_TrayClick(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Content.ToString())
+            {
+                case "Tray1":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[0];
+                    break;
+                case "Tray2":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[1];
+                    break;
+                case "Tray3":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[2];
+                    break;
+                case "Tray4":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[3];
+                    break;
+                case "Tray5":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[4];
+                    break;
+                case "Tray6":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[5];
+                    break;
+                case "Tray7":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[6];
+                    break;
+                case "Tray8":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[7];
+                    break;
+                case "Tray9":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[8];
+                    break;
+                case "Tray10":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[9];
+                    break;
+                case "Tray11":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[10];
+                    break;
+                case "Tray12":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[11];
+                    break;
+                case "Tray13":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[12];
+                    break;
+                case "Tray14":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[13];
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Btn_PickerClick(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Content.ToString())
+            {
+                case "Picker1":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[0];
+                    break;
+                case "Picker2":
+                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[1];
+                    break;
+                default:
+                    break;
+            }
+        }
     }
-
-    public sealed class MachineCapability
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Value { get; set; }
-    }
-
-    //public sealed class CapabilityRepository
-    //{
-    //    private static IEnumerable<MachineCapability> s_Capability;
-
-    //    public IEnumerable<MachineCapability> GetCapability() =>
-    //      s_Capability ?? (s_Capability = new List<MachineCapability>
-    //      {
-    //          new MachineCapability { Name="ABS", Description = "Test", Value= "test" },
-    //          new MachineCapability { Name="BHS", Description = "Test", Value= "test" },
-    //          new MachineCapability { Name="LEOMS", Description = "Test", Value= "test" },
-    //          new MachineCapability { Name="LEO_", Description = "Test", Value= "test" }
-    //      });
-    //}
 }

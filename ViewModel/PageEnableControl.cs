@@ -18,9 +18,9 @@ namespace ViewModel
         public PageEnableControl()
         {
             _TestControl = true;
-            _TeachControl = false;
-            _DeviceControl = false;
-            _StatisticsControl = false;
+            _TeachControl = true;
+            _DeviceControl = true;
+            _StatisticsControl = true;
         }
         #endregion Constructors
 

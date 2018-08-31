@@ -122,7 +122,12 @@
     <Resource Include="Style\Templates\Images\TrayInactive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Style\Image\" />
+    <Resource Include="Images\BladeActive.png" />
+    <Resource Include="Images\BladeInactive.png" />
+    <Resource Include="Images\CrosshairsTemplate.bmp" />
+    <Resource Include="Images\Picker.png" />
+    <Resource Include="Images\TrayActive.png" />
+    <Resource Include="Images\TrayInactive.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Style\Templates\Images\CrosshairsTemplate.bmp" />

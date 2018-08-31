@@ -19,10 +19,65 @@ namespace ViewModel
 
         #region Constructors
         public BladeViewModel()
-        { }
+        {
+            _Name = "Blade Test";
+            _Status = "Open";
+            _SerialNum = "woei3e89fuw";
+            _MemsSN = "SASIDU7869";
+            _MemsCount = 2345;
+            _DiskSN = "sfdg344";
+        }
         #endregion Constructors
 
         #region Properties
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                _Name = value;
+            }
+        }
+
+        public string Status
+        {
+            get
+            {
+                return _Status;
+            }
+        }
+        public string SerialNum
+        {
+            get
+            {
+                return _SerialNum;
+            }
+        }
+        public string MemsSN
+        {
+            get
+            {
+                return _MemsSN;
+            }
+        }
+        public int MemsCount
+        {
+            get
+            {
+                return _MemsCount;
+            }
+        }
+
+        public string DiskSN
+        {
+            get
+            {
+                return _DiskSN;
+            }
+        }
 
         #endregion Properties
 

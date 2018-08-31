@@ -5,10 +5,12 @@ using System.Text;
 
 namespace ViewModel
 {
-    public class TrayViewModel
+    public class TopDeviceViewModel
     {
         #region Fields
         private string _Name;
+        private bool _Type;
+        private string _State;
         #endregion Fields
 
         #region Constructors
@@ -25,6 +27,21 @@ namespace ViewModel
             set
             {
                 _Name = value;
+            }
+        }
+        public bool Type
+        {
+            get
+            {
+                return _Type;
+            }
+        }
+
+        public string State
+        {
+            get
+            {
+                return _State;
             }
         }
         #endregion Properties
