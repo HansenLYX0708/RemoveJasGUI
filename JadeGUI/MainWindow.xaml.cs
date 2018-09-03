@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Threading;
-
+using System.Windows.Media.Effects;
 using ViewModel;
 
 namespace JadeGUI
@@ -27,6 +27,13 @@ namespace JadeGUI
         public MainWindow()
         {
             InitializeComponent();
+
+            HGST.SCS.UI.SplashScreen splashScreen = new HGST.SCS.UI.SplashScreen();
+            splashScreen.Show();
+
+            Delay(3);
+
+            splashScreen.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -37,6 +44,11 @@ namespace JadeGUI
             _AmberMachine = new AmberViewModel();
             leftGrid.DataContext = _AmberMachine.CommonInfo;
             FuncTabControl.DataContext = _AmberMachine.PageEnableControl;
+            DeviceOutputListView.ItemsSource = _AmberMachine.m_TopDevices;
+            DeviceInputListView.ItemsSource = _AmberMachine.m_TopDevices;
+
+            
+
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -69,6 +81,10 @@ namespace JadeGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            BlurEffect blurEffect = new BlurEffect();
+            blurEffect.Radius = 10;
+            MainGrid.Effect = blurEffect;
+            
             //CustomMessageBox.Show("Really Exit?", CustomMessageBoxButton.OKCancel, CustomMessageBoxIcon.Question);
             MessageBoxResult result = MessageBox.Show("Really Exit?", "Message", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
@@ -78,8 +94,8 @@ namespace JadeGUI
             else
             {
                 e.Cancel = true;
+                MainGrid.Effect = null;
             }
-
         }
         private delegate void SetprogressBarHandle(int vaule);
         private void Btn_BladeDoubleClick(object sender, RoutedEventArgs e)
@@ -99,7 +115,8 @@ namespace JadeGUI
             //mThread.Start();
 
             _AmberMachine.m_Blades[0].Name = "Blade1";
-
+            Button a = new Button();
+            a.Height = 10;
             myPerprotyGrid.Refresh();
 
         }
@@ -195,6 +212,20 @@ namespace JadeGUI
                 default:
                     break;
             }
+        }
+
+        public static bool Delay(int delayTime)
+        {
+            DateTime now = DateTime.Now;
+            int s;
+            do
+            {
+                TimeSpan spand = DateTime.Now - now;
+                s = spand.Seconds;
+                Thread.Sleep(1000);
+            }
+            while (s < delayTime);
+            return true;
         }
     }
 }

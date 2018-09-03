@@ -1,16 +1,18 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:JadeGUI" x:Class="JadeGUI.MainWindow"
+        xmlns:local="clr-namespace:JadeGUI"
         xmlns:my="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:wpg="clr-namespace:WPG;assembly=WPG"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="JadeGUI.MainWindow"
         Title="Amber Automation" 
         WindowState="Normal"
         AllowsTransparency="True" WindowStyle="None"
         Height="820" Width="1500"
         MouseDown="Window_MouseDown" 
         Closing="Window_Closing"
-        Loaded="Window_Loaded"
+        Loaded="Window_Loaded" Background="#FF8D6E6E"
+        WindowStartupLocation="CenterScreen"
     >
     <!--AllowsTransparency="True" WindowStyle="None" Height="820" Width="1400" Loaded="Window_Loaded"-->
     <!--WindowState="Maximized"-->
@@ -18,13 +20,13 @@
     <Window.Resources>
         <ControlTemplate x:Key="ButtonEllipseTemplate" TargetType="{x:Type Button}">
             <Grid>
-                <Ellipse Height="140" HorizontalAlignment="Center" Fill="#FF6B6A6C" Name="ellipse1" VerticalAlignment="Center" Width="140"/>
-                <Ellipse x:Name="ButtonEllipse" Width="100" Height="100" StrokeThickness="1" Fill="#FF646364" IsManipulationEnabled="True" IsHitTestVisible="True" OverridesDefaultStyle="True" Stroke="{x:Null}" SnapsToDevicePixels="False" StrokeLineJoin="Round" UseLayoutRounding="False" />
+                <Ellipse Height="140" HorizontalAlignment="Center" Fill="#FF00BFA6" x:Name="ellipse1" VerticalAlignment="Center" Width="140"/>
+                <Ellipse x:Name="ButtonEllipse" Width="100" Height="100" StrokeThickness="1" Fill="#FF007D78" IsManipulationEnabled="True" IsHitTestVisible="True" OverridesDefaultStyle="True" Stroke="{x:Null}" SnapsToDevicePixels="False" StrokeLineJoin="Round" UseLayoutRounding="False" />
                 <Label x:Name="ButtonContent" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="ButtonEllipse" Property="Fill" Value="#01b0b7" ></Setter>
+                    <Setter TargetName="ButtonEllipse" Property="Fill" Value="#01b0b7" />
                     <Setter TargetName="ButtonContent" Property="Foreground" Value="#FFF7F9FB"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
@@ -39,12 +41,12 @@
         </ControlTemplate>
         <ControlTemplate x:Key="TabItemTemplate" TargetType="{x:Type TabItem}">
             <Grid>
-                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-                <TextBlock Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Header}" Foreground="White" FontFamily="Arial"/>
+                <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF871996" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <TextBlock x:Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Header}" Foreground="White" FontFamily="Arial"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsSelected"  Value="True">
-                    <Setter TargetName="buttonBackground" Property="Fill" Value="White" />
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FF86D4D1" />
                     <Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
@@ -55,8 +57,48 @@
         </ControlTemplate>
         <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
             <Grid>
-                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-                <TextBlock Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="White" FontFamily="Arial" FontSize="16"/>
+                <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF0091EB" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <TextBlock x:Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="White" FontFamily="Arial" FontSize="16"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#01b0b7" />
+                    <!--<Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>-->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FFD4300f"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#2d333d"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="MotionBtnTemplate" TargetType="{x:Type Button}">
+            <Grid>
+                <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF00bfa6" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <TextBlock x:Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="White" FontFamily="Arial" FontSize="16"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#01b0b7" />
+                    <!--<Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>-->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FFD4300f"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#2d333d"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="LucencyButtonTemplate" TargetType="{x:Type Button}">
+            <Grid>
+                <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <TextBlock x:Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="White" FontFamily="Arial" FontSize="16"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -75,25 +117,34 @@
         </ControlTemplate>
         <ControlTemplate x:Key="ProgressBarTemplate" TargetType="{x:Type ProgressBar}">
             <Grid>
-                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
             </Grid>
         </ControlTemplate>
+        <Style x:Key="LabelStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background" Value="#FFF29100"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontStretch" Value="Medium"/>
+        </Style>
+        <!--Device||||||||||||||||||||||||||||||||-->
         <!--Menu-->
         <ContextMenu x:Key="BladeMenu">
             <MenuItem Header="Load/Unload" Click="Button_Click"/>
-            <MenuItem Name="BladeTeach" Header="Teach"/>
-            <MenuItem Name="BladeMove" Header="Move to position"/>
-            <MenuItem Name="BladeManager" Header="Manager Panel"/>
-            <MenuItem Name="BladeTestInfo" Header="Test Panel"/>
+            <MenuItem x:Name="BladeTeach" Header="Teach"/>
+            <MenuItem x:Name="BladeMove" Header="Move to position"/>
+            <MenuItem x:Name="BladeManager" Header="Manager Panel"/>
+            <MenuItem x:Name="BladeTestInfo" Header="Test Panel"/>
             <MenuItem Header="Move Camera to MEMS"/>
             <MenuItem Header="Pick slider"/>
             <MenuItem Header="Place slider"/>
         </ContextMenu>
         <ContextMenu x:Key="TrayMenu" >
             <MenuItem Header="Load/Unload"/>
-            <MenuItem Name="TrayTeach" Header="Teach"/>
-            <MenuItem Name="TrayMove" Header="Move to position"/>
-            <MenuItem Name="TrayInfo" Header="Tray Info"/>
+            <MenuItem x:Name="TrayTeach" Header="Teach"/>
+            <MenuItem x:Name="TrayMove" Header="Move to position"/>
+            <MenuItem x:Name="TrayInfo" Header="Tray Info"/>
             <MenuItem Header="Move Camera to Tray"/>
             <MenuItem Header="Pick slider"/>
             <MenuItem Header="Place slider"/>
@@ -113,7 +164,6 @@
             <MenuItem Header="DownCameraMPP"/>
             <MenuItem Header="DownCamera Z"/>
         </ContextMenu>
-        <!--Device||||||||||||||||||||||||||||||||-->
         <!--Picker-->
         <ControlTemplate x:Key="PickerButtonTemplate" TargetType="{x:Type Button}">
             <Grid ShowGridLines="False">
@@ -128,10 +178,10 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="1" Grid.Row="0" Name="PickerContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
-                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Images/Picker.png" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource PickerMenu}"/>
-                <Rectangle Grid.Column="1" Grid.Row="2" Width="100" Height="10" VerticalAlignment="Top" Fill="#FF35C72E" Visibility="{Binding }"/>
-                <TextBlock Grid.ColumnSpan="3" Grid.Row="3" Name="SliderContent" Text="Slider Num" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="PickerContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" x:Name="BackgroundImage" Source="Images/Picker.png" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource PickerMenu}"/>
+                <Rectangle Grid.Column="1" Grid.Row="2" Width="100" Height="10" VerticalAlignment="Top" Fill="#FF35C72E" Visibility="{Binding ''}"/>
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="3" x:Name="SliderContent" Text="Slider Num" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -159,9 +209,8 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Name="BackgroundImage" Source="Images/BladeInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource BladeMenu}"/>
-
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="Black" FontFamily="Calibri" FontSize="16"/>
+                <Image x:Name="BackgroundImage" Source="Images/BladeInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource BladeMenu}"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" x:Name="buttonContent" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" FontSize="16"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -189,9 +238,9 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Name="BackgroundImage" Source="Images/TrayInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource TrayMenu}"/>
+                <Image x:Name="BackgroundImage" Source="Images/TrayInactive.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" ContextMenu="{StaticResource TrayMenu}"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="2" Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="Black" FontFamily="Calibri" FontSize="20"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" x:Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="Black" FontFamily="Calibri" FontSize="20"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -219,8 +268,8 @@
                     <RowDefinition Height="4*"/>
 
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="1" Grid.Row="0" Name="UpCameraPrimaryDatumContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
-                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Images/CrosshairsTemplate.bmp" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource UpCameraPrimaryDatumMenu}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="UpCameraPrimaryDatumContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" x:Name="BackgroundImage" Source="Images/CrosshairsTemplate.bmp" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource UpCameraPrimaryDatumMenu}"/>
 
             </Grid>
             <ControlTemplate.Triggers>
@@ -248,8 +297,8 @@
                     <RowDefinition Height="4*"/>
 
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="1" Grid.Row="0" Name="DownCameraPrimaryDatumContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
-                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Images/CrosshairsTemplate.bmp" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource DownCameraPrimaryDatumMenu}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="DownCameraPrimaryDatumContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" x:Name="BackgroundImage" Source="Images/CrosshairsTemplate.bmp" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource DownCameraPrimaryDatumMenu}"/>
 
             </Grid>
             <ControlTemplate.Triggers>
@@ -266,8 +315,21 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
-    
-    <Grid x:Name="MainGrid"  ShowGridLines="False" Background="#FF999C9C">
+    <Grid x:Name="MainGrid" ShowGridLines="False">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform Angle="-45" CenterY="0.5" CenterX="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FFA4CA71" Offset="0"/>
+                <GradientStop Color="#FF347B99" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
@@ -278,13 +340,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Grid Name="MainWindowTop" Grid.ColumnSpan="3" Grid.Row="0" Background="#FF6B6A6C">
-            <TextBlock HorizontalAlignment="Left" Text="Opal Automation v1.0" Foreground="White" VerticalAlignment="Center" FontSize="12" Margin="10,0,0,0"/>
-            <Button Content="X" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnClose_click"/>
-            <Button Content="O" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMaximized_click" Margin="0,0,40,0"/>
-            <Button Content="-" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMinimized_click" Margin="0,0,80,0"/>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" Background="#FFFDFEFF">
         </Grid>
-        <Grid Background="#FFD6DAD9" x:Name="leftGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1">
+
+        <Grid x:Name="MainWindowTop" Grid.ColumnSpan="3" Grid.Row="0">
+            <TextBlock HorizontalAlignment="Left" Text="Opal Automation v1.0" Foreground="White" VerticalAlignment="Center" FontSize="12" Margin="10,0,0,0"/>
+            <Button Content="X" Template="{StaticResource LucencyButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnClose_click"/>
+            <Button Content="O" Template="{StaticResource LucencyButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMaximized_click" Margin="0,0,40,0"/>
+            <Button Content="-" Template="{StaticResource LucencyButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMinimized_click" Margin="0,0,80,0"/>
+        </Grid>
+        <Grid x:Name="leftGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -299,52 +364,51 @@
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Connect" Template="{DynamicResource ButtonEllipseTemplate}" HorizontalAlignment="Center" Name="buttonConnectAllDevice"  VerticalAlignment="Center"  Foreground="#FFF7F9FB" FontFamily="Arial" FontSize="16" BorderBrush="{x:Null}" Background="#FFF7F9FB">
+                    <Button Content="Connect" Template="{DynamicResource ButtonEllipseTemplate}" HorizontalAlignment="Center" x:Name="buttonConnectAllDevice"  VerticalAlignment="Center"  Foreground="#FFF7F9FB" FontFamily="Arial" FontSize="16" BorderBrush="{x:Null}">
                         <Button.ContextMenu>
-                            <ContextMenu Name="connectContext">
-                            </ContextMenu>
+                            <ContextMenu x:Name="connectContext"/>
                         </Button.ContextMenu>
                     </Button>
                     <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
-                        <!--<Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="10" Content="Move to clear" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>-->
                         <Button Grid.Column="1" Margin="70,10,70,10" Content="Configuration" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid x:Name="CenterGrid" Margin="5" HorizontalAlignment="Stretch" Grid.Row="1" ShowGridLines="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
-                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
-                <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Blade Information" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Project" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="RunCode" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Type" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="Product Type" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="LEB" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="0xFC2B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Grid.Column="1" Grid.Row="3" Width="60" SelectedIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
-                    <ComboBoxItem Content="Up"/>
-                    <ComboBoxItem Content="Down"/>
-                </ComboBox>
-                <TextBlock Grid.Column="1" Grid.Row="4" Text="L2_B_G" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <CheckBox Grid.ColumnSpan="2" Grid.Row="5" Content="Retest and Prime Identification" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <Grid Grid.Column="2" Grid.RowSpan="6">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.ColumnSpan="2" Grid.Row="0" Fill="#FF94c23d"/>
+                    <Rectangle Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Fill="#FF00bfa6"/>
+                    <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Blade Information" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Project" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="RunCode" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Type" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Product Type" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="LEB" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="0xFC2B" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <ComboBox Grid.Column="1" Grid.Row="3" Width="60" SelectedIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Foreground="White">
+                        <ComboBoxItem Content="Up"/>
+                        <ComboBoxItem Content="Down"/>
+                    </ComboBox>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="L2_B_G" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <CheckBox Grid.ColumnSpan="2" Grid.Row="5" Content="Retest and Prime Identification" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="White"/>
+                </Grid>
+                <Grid Grid.Column="2" Grid.RowSpan="6" Margin="4,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition/>
@@ -356,17 +420,34 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
-                    <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
-                    <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Position" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="X" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Y" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="0" Grid.Row="4" Text="W" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="23.45" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="2" Text="45.65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="3" Text="12.23" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="4" Text="55.22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Rectangle Grid.ColumnSpan="2" Grid.Row="0" Fill="#FF94c23d"/>
+                    <Rectangle Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Fill="#FF00bfa6"/>
+                    <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Position" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="X" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Y" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Z" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="W" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                    <Grid Grid.Column="1" Grid.Row="1" Margin="0,5,0,5">
+                        <Button Template="{StaticResource MotionBtnTemplate}" Background="#FF00bfa6" Width="30" HorizontalAlignment="Left" Content="-"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="23.45" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Right" Content="+"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="2" Margin="0,5,0,5">
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Left" Content="-"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="23.45" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Right" Content="+"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="3" Margin="0,5,0,5">
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Left" Content="-"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="23.45" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Right" Content="+"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="4" Margin="0,5,0,5">
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Left" Content="-"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="23.45" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        <Button Template="{StaticResource MotionBtnTemplate}" Width="30" HorizontalAlignment="Right" Content="+"/>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid x:Name="ButtomGrid" Margin="5" HorizontalAlignment="Stretch" Grid.Row="2" ShowGridLines="False">
@@ -381,14 +462,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
-                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
-                <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Machine Information" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Machine Number" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Machine Status" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Mode of Monitoring" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding MachineNum}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding MachineStatus}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Rectangle Grid.ColumnSpan="2" Grid.Row="0" Fill="#FF94c23d"/>
+                <Rectangle Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Fill="#FF00bfa6"/>
+                <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Machine Information" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Machine Number" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Machine Status" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Mode of Monitoring" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding MachineNum}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding MachineStatus}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                 <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="0"  Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ComboBoxItem Content="NOMARL" />
                     <ComboBoxItem Content="JORTER"/>
@@ -397,34 +478,34 @@
                     <ComboBoxItem Content="RUBY"/>
                     <ComboBoxItem Content="AST"/>
                 </ComboBox>
-                <ListView Grid.ColumnSpan="2" Grid.Row="4" Margin="5" ItemsSource="{Binding Capabilities}">
+                <ListView Grid.ColumnSpan="2" Grid.Row="4" Margin="5" ItemsSource="{Binding Capabilities}" Background="#FF8AC9C1">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Capability" Width="80" DisplayMemberBinding="{Binding Path=Name}"/>
-                            <GridViewColumn Header="Description" Width="80" DisplayMemberBinding="{Binding Path=Description}"/>
-                            <GridViewColumn Header="Value" Width="80" DisplayMemberBinding="{Binding Path=Value}"/>
+                            <GridViewColumn Header="Capability" Width="80" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Description" Width="80" DisplayMemberBinding="{Binding Description}"/>
+                            <GridViewColumn Header="Value" Width="80" DisplayMemberBinding="{Binding Value}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>
         </Grid>
-        <Grid Background="#FFD6DAD9" x:Name="middleGrid" Margin="5,5,5,5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1">
-            <TabControl Margin="5,5,5,5"   x:Name="FuncTabControl">
-                <TabItem Header="Test" x:Name="TestTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding TestControl}" Height="20" Width="80">
+        <Grid x:Name="middleGrid" Margin="5,5,5,5" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1">
+            <TabControl Margin="5,5,5,5" Name="FuncTabControl" BorderBrush="White">
+                <TabItem Header="Test" Name="TestTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding TestControl}" Height="20" Width="80">
                     <!--<local:TestGridControl/>-->
-                    <Grid Name="TestMain" ShowGridLines="False">
+                    <Grid x:Name="TestMain" ShowGridLines="False">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.7*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid Name="OperaterAndInfo" ShowGridLines="False" Grid.Row="0">
+                        <Grid x:Name="OperaterAndInfo" ShowGridLines="False" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="1.5*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Background="#FFD6DAD9" Margin="5">
+                            <Grid Grid.Column="0" Margin="5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
@@ -436,22 +517,18 @@
                                 <Button Grid.Row="2" Template="{StaticResource ButtonTemplate}" Grid.Column="0" Content="Configuration" Margin="5"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox Margin="5"  Background="#FFD6DAD9"  AutoWordSelection="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+                                <TextBox Margin="5"  Background="#FF5FAEA3"  AutoWordSelection="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Foreground="White"/>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Content="Picker1" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick">
-
-                                </Button>
-                                <Button Grid.Column="1" Content="Picker2" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick">
-
-                                </Button>
+                                <Button Grid.Column="0" Content="Picker1" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick"/>
+                                <Button Grid.Column="1" Content="Picker2" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick"/>
                             </Grid>
                         </Grid>
-                        <Grid Name="Blades" ShowGridLines="False" Grid.Row="1" Margin="5" Background="#FFEFF1F1">
+                        <Grid x:Name="Blades" ShowGridLines="False" Grid.Row="1" Margin="5" Background="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -460,22 +537,22 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <Button Name="Blade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="Blade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <Button Name="Blade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="Blade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="2">
-                                <Button Name="Blade3" Template="{StaticResource BladeButtonTemplate}" Content="Blade3" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="Blade3" Template="{StaticResource BladeButtonTemplate}" Content="Blade3" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="3">
-                                <Button Name="Blade4" Template="{StaticResource BladeButtonTemplate}" Content="Blade4" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="Blade4" Template="{StaticResource BladeButtonTemplate}" Content="Blade4" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="5">
-                                <Button Name="Blade5" Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="Blade5" Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                         </Grid>
-                        <Grid Name="Trays" ShowGridLines="False" Grid.Row="2" Margin="5" Background="#FFEFF1F1">
+                        <Grid x:Name="Trays" ShowGridLines="False" Grid.Row="2" Margin="5" Background="#FFEFF1F1">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
@@ -534,15 +611,15 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Teach" x:Name="TeachTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding TeachControl}" Height="20" Width="80">
+                <TabItem Header="Teach" Name="TeachTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding TeachControl}" Height="20" Width="80">
                     <!--<local:TeachGridControl/>-->
-                    <Grid Name="TeachMain" ShowGridLines="False">
+                    <Grid x:Name="TeachMain" ShowGridLines="False">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.7*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid Name="DatumPicker" ShowGridLines="False" Grid.Row="0">
+                        <Grid x:Name="DatumPicker" ShowGridLines="False" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="1*"/>
@@ -553,30 +630,20 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Content="UpCameraPrimaryDatum" Template="{StaticResource UpCameraPrimaryDatumButtonTemplate}">
-
-                                </Button>
-                                <Button Grid.Column="1" Content="DownCameraPrimaryDatum" Template="{StaticResource DownCameraPrimaryDatumButtonTemplate}">
-
-                                </Button>
+                                <Button Grid.Column="0" Content="UpCameraPrimaryDatum" Template="{StaticResource UpCameraPrimaryDatumButtonTemplate}"/>
+                                <Button Grid.Column="1" Content="DownCameraPrimaryDatum" Template="{StaticResource DownCameraPrimaryDatumButtonTemplate}"/>
                             </Grid>
-                            <Grid Grid.Column="1">
-
-                            </Grid>
+                            <Grid Grid.Column="1"/>
                             <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Content="Picker1" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick">
-
-                                </Button>
-                                <Button Grid.Column="1" Content="Picker2" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick">
-
-                                </Button>
+                                <Button Grid.Column="0" Content="Picker1" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick"/>
+                                <Button Grid.Column="1" Content="Picker2" Template="{StaticResource PickerButtonTemplate}" Click="Btn_PickerClick"/>
                             </Grid>
                         </Grid>
-                        <Grid Name="TeachBlades" ShowGridLines="False" Grid.Row="1" Margin="5" Background="#FFEFF1F1">
+                        <Grid x:Name="TeachBlades" ShowGridLines="False" Grid.Row="1" Margin="5" Background="#FFEFF1F1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -585,22 +652,22 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <Button Name="TeachBlade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="TeachBlade1" Template="{StaticResource BladeButtonTemplate}" Content="Blade1" Click="Btn_BladeClick"  MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <Button Name="TeachBlade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="TeachBlade2" Template="{StaticResource BladeButtonTemplate}" Content="Blade2" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="2">
-                                <Button Name="TeachBlade3" Template="{StaticResource BladeButtonTemplate}" Content="Blade3" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="TeachBlade3" Template="{StaticResource BladeButtonTemplate}" Content="Blade3" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="3">
-                                <Button Name="TeachBlade4" Template="{StaticResource BladeButtonTemplate}" Content="Blade4" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="TeachBlade4" Template="{StaticResource BladeButtonTemplate}" Content="Blade4" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                             <Grid Grid.Column="5">
-                                <Button Name="TeachBlade5" Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
+                                <Button x:Name="TeachBlade5" Template="{StaticResource BladeButtonTemplate}" Content="Blade5" Click="Btn_BladeClick" MouseDoubleClick="Btn_BladeDoubleClick"/>
                             </Grid>
                         </Grid>
-                        <Grid Name="TeachTrays" ShowGridLines="False" Grid.Row="2" Margin="5" Background="#FFEFF1F1">
+                        <Grid x:Name="TeachTrays" ShowGridLines="False" Grid.Row="2" Margin="5" Background="#FFEFF1F1">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
@@ -659,9 +726,9 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Device" x:Name="DeviceTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding DeviceControl}" Height="20" Width="80">
+                <TabItem Header="Device" Name="DeviceTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding DeviceControl}" Height="20" Width="80">
                     <!--<local:DeviceGridControl/>-->
-                    <Grid Name="DeviceMain" ShowGridLines="True">
+                    <Grid x:Name="DeviceMain" ShowGridLines="False">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="*"/>
@@ -673,43 +740,48 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Output" HorizontalAlignment="Center"/>
                         <TextBlock Grid.Column="1" Grid.Row="0" Text="Input" HorizontalAlignment="Center"/>
-                        <ListView  Grid.Column="0" Grid.Row="1" Margin="5" DataContext="_AmberMachine.m_TopDevices">
+                        <ListView  Grid.Column="0" Grid.Row="1" Margin="5" Name="DeviceOutputListView">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="I/O Name" Width="200"/>
-                                    <GridViewColumn Header="State" Width="200"/>
+                                    <GridViewColumn Header="I/O Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Header="State" Width="200" DisplayMemberBinding="{Binding Path=State}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ListView Grid.Column="1" Grid.Row="1" Margin="5">
+                        <ListView Grid.Column="1" Grid.Row="1" Margin="5" Name="DeviceInputListView">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="I/O Name" Width="200"/>
-                                    <GridViewColumn Header="State" Width="200"/>
+                                    <GridViewColumn Header="I/O Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Header="State" Width="200" DisplayMemberBinding="{Binding Path=State}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Statistics" x:Name="StatisticsTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding StatisticsControl}" Height="20" Width="80">
-                    <!--<local:StatisticsControl/>-->
+                <TabItem Header="Statistics" Name="StatisticsTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding StatisticsControl}" Height="20" Width="80">
+                    
+                    
+                    
+                    
+                    
+                    
                 </TabItem>
 
             </TabControl>
         </Grid>
-        <Grid Background="#FFD6DAD9" x:Name="rightGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
+        <Grid x:Name="rightGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="10,0,0,0" Text="Properities" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF2E2E2E" FontFamily="Arial" FontSize="16"/>
-            <Grid Name="PropertyRegion" Grid.Row="1" Margin="5" Background="#FFFBF9F9">
-                <wpg:PropertyGrid   Foreground="White"   Name="myPerprotyGrid" ShowDescription="True"  Margin="0,0,0,0" AutomaticlyExpandObjects="True" />
+            <TextBlock Grid.Row="0" Background="#FF871996" Margin="5,0,0,0" Text="  Properities  " Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Arial"/>
+            <Grid Name="PropertyRegion" Grid.Row="1" Margin="5,0,0,0">
+                <wpg:PropertyGrid x:Name="myPerprotyGrid" ShowDescription="True" BorderBrush="White" AutomaticlyExpandObjects="True" />
                 <!--Instance="{Binding ElementName=button1}" Canvas.Left="308" Canvas.Top="11" DataContext="{Binding}" ShowPreview="True" AutomaticlyExpandObjects="False"-->
                 <!--<Button Content="JustForTestButton" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="Button_Click" />-->
             </Grid>
         </Grid>
-        <Grid Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
+        <Grid x:Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

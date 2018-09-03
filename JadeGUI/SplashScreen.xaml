@@ -1,0 +1,19 @@
+﻿<Window x:Class="HGST.SCS.UI.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Please wait while the program is loading..." Height="240" Width="480"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Wait" WindowStyle="None" Topmost="True" VerticalContentAlignment="Stretch" ShowActivated="True" ShowInTaskbar="True" BorderBrush="LightSkyBlue" BorderThickness="1">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFEEF5FD" >
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="1*"/>
+            <RowDefinition  Height="0*"/>
+            <RowDefinition  Height="0*"/>
+        </Grid.RowDefinitions>
+        <!--
+        <Label Grid.Row="0" Content="Please wait while the program is loading......   "  HorizontalAlignment="Stretch" Name="label1" VerticalAlignment="Bottom" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" />
+        <Image Grid.Row="1" Name="image1"  Stretch="None" Focusable="True" Source="/BladeRunner;component/SplashScreen.png" />
+        <Label Grid.Row="2" Content="Copyright (C) 2012 - 2017 Western Digital"  HorizontalAlignment="Stretch" Name="label2" VerticalAlignment="Center" FontSize="10" HorizontalContentAlignment="Left" Margin="50,0,0,0"/>
+        -->
+        <Image Grid.Row="0" Name="image1"  Stretch="Fill" Focusable="True" Source="SplashScreen.png"/>
+    </Grid>
+</Window>

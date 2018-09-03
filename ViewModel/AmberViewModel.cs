@@ -63,6 +63,7 @@ namespace ViewModel
             {
                 TopDeviceViewModel tmpTopDevice = new TopDeviceViewModel();
                 tmpTopDevice.Name = String.Format("Device{0}", i + 1);
+                tmpTopDevice.State = "Locking";
                 m_TopDevices.Add(tmpTopDevice);
             }
         }

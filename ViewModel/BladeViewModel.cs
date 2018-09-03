@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -40,6 +41,7 @@ namespace ViewModel
         #endregion Constructors
 
         #region Properties
+        [Category("Base")]
         public string Name
         {
             get
@@ -51,7 +53,7 @@ namespace ViewModel
                 _Name = value;
             }
         }
-
+        [Category("Base")]
         public string Status
         {
             get
@@ -59,13 +61,15 @@ namespace ViewModel
                 return _Status;
             }
         }
-        public string SerialNum
+        [Category("SerialNumber")]
+        public string BladeSN
         {
             get
             {
                 return _SerialNum;
             }
         }
+        [Category("SerialNumber")]
         public string MemsSN
         {
             get
@@ -73,6 +77,7 @@ namespace ViewModel
                 return _MemsSN;
             }
         }
+        [Category("Base")]
         public int MemsCount
         {
             get
@@ -80,7 +85,7 @@ namespace ViewModel
                 return _MemsCount;
             }
         }
-
+        [Category("SerialNumber")]
         public string DiskSN
         {
             get
@@ -88,6 +93,7 @@ namespace ViewModel
                 return _DiskSN;
             }
         }
+        [Category("Base")]
         public string Type
         {
             get
@@ -95,6 +101,7 @@ namespace ViewModel
                 return _Type;
             }
         }
+        [Category("SerialNumber")]
         public string ActuatorSN
         {
             get
@@ -102,6 +109,7 @@ namespace ViewModel
                 return _ActuatorSerialNumber;
             }
         }
+        [Category("SerialNumber")]
         public string PCBASN
         {
             get
@@ -109,7 +117,7 @@ namespace ViewModel
                 return _PCBASerialNumber;
             }
         }
-
+        [Category("SerialNumber")]
         public string MotorSN
         {
             get
@@ -117,6 +125,7 @@ namespace ViewModel
                 return _MotorSerialNumber;
             }
         }
+        [Category("SerialNumber")]
         public string FlexSN
         {
             get
@@ -124,8 +133,6 @@ namespace ViewModel
                 return _FlexSerialNumber;
             }
         }
-
-
         #endregion Properties
 
         #region Methods

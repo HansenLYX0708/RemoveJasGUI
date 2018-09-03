@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace ViewModel
 {
-    public class TopDeviceViewModel
+    public class TopDeviceViewModel : INotifyPropertyChanged
     {
         #region Fields
         private string _Name;
@@ -27,6 +28,7 @@ namespace ViewModel
             set
             {
                 _Name = value;
+                this.OnPropertyChanged("Name");
             }
         }
         public bool Type
@@ -43,11 +45,27 @@ namespace ViewModel
             {
                 return _State;
             }
+            set
+            {
+                _State = value;
+                this.OnPropertyChanged("State");
+            }
         }
         #endregion Properties
 
         #region Methods
 
         #endregion Methods
+
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string PropertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            }
+        }
+        #endregion INotifyPropertyChanged Members
     }
 }
