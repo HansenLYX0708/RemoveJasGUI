@@ -7,7 +7,7 @@
         Title="Amber Automation" 
         WindowState="Normal"
         AllowsTransparency="True" WindowStyle="None"
-        Height="820" Width="1400"
+        Height="820" Width="1500"
         MouseDown="Window_MouseDown" 
         Closing="Window_Closing"
         Loaded="Window_Loaded"
@@ -279,8 +279,10 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid Name="MainWindowTop" Grid.ColumnSpan="3" Grid.Row="0" Background="#FF6B6A6C">
+            <TextBlock HorizontalAlignment="Left" Text="Opal Automation v1.0" Foreground="White" VerticalAlignment="Center" FontSize="12" Margin="10,0,0,0"/>
             <Button Content="X" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnClose_click"/>
-            <Button Content="-" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMinimized_click" Margin="0,0,40,0"/>
+            <Button Content="O" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMaximized_click" Margin="0,0,40,0"/>
+            <Button Content="-" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnMinimized_click" Margin="0,0,80,0"/>
         </Grid>
         <Grid Background="#FFD6DAD9" x:Name="leftGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -304,12 +306,12 @@
                         </Button.ContextMenu>
                     </Button>
                     <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
-                        <Grid.ColumnDefinitions>
+                        <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="10" Content="Move to clear" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
-                        <Button Grid.Column="1" Margin="10" Content="Configuration" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
+                        <Button Grid.Column="0" Margin="10" Content="Move to clear" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>-->
+                        <Button Grid.Column="1" Margin="70,10,70,10" Content="Configuration" Template="{StaticResource ButtonTemplate}" Click="Button_Click"/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -427,14 +429,14 @@
                                     <RowDefinition />
                                     <RowDefinition />
                                     <RowDefinition />
-                                    <RowDefinition />
+
                                 </Grid.RowDefinitions>
                                 <Button Grid.Row="0" Template="{StaticResource ButtonTemplate}" Grid.Column="0" Content="Start Test" Margin="5"/>
                                 <Button Grid.Row="1" Template="{StaticResource ButtonTemplate}" Grid.Column="0" Content="Pause Test" Margin="5"/>
                                 <Button Grid.Row="2" Template="{StaticResource ButtonTemplate}" Grid.Column="0" Content="Configuration" Margin="5"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox Margin="5" />
+                                <TextBox Margin="5"  Background="#FFD6DAD9"  AutoWordSelection="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
@@ -491,40 +493,40 @@
                                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray1" Click="Btn_TrayClick"/>
                             </Grid>
                             <Grid Grid.Row="0" Grid.Column="1">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray2" Click="Btn_TrayClick"/>
-                            </Grid>
-                            <Grid Grid.Row="0" Grid.Column="2">
                                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray3" Click="Btn_TrayClick"/>
                             </Grid>
-                            <Grid Grid.Row="0" Grid.Column="3">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray4" Click="Btn_TrayClick"/>
-                            </Grid>
-                            <Grid Grid.Row="0" Grid.Column="4">
+                            <Grid Grid.Row="0" Grid.Column="2">
                                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray5" Click="Btn_TrayClick"/>
                             </Grid>
-                            <Grid Grid.Row="0" Grid.Column="5">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray6" Click="Btn_TrayClick"/>
-                            </Grid>
-                            <Grid Grid.Row="0" Grid.Column="6">
+                            <Grid Grid.Row="0" Grid.Column="3">
                                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray7" Click="Btn_TrayClick"/>
                             </Grid>
-                            <Grid Grid.Row="1" Grid.Column="0">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray8" Click="Btn_TrayClick"/>
-                            </Grid>
-                            <Grid Grid.Row="1" Grid.Column="1">
+                            <Grid Grid.Row="0" Grid.Column="4">
                                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray9" Click="Btn_TrayClick"/>
                             </Grid>
+                            <Grid Grid.Row="0" Grid.Column="5">
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray11" Click="Btn_TrayClick"/>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="6">
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray13" Click="Btn_TrayClick"/>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="0">
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray2" Click="Btn_TrayClick"/>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1">
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray4" Click="Btn_TrayClick"/>
+                            </Grid>
                             <Grid Grid.Row="1" Grid.Column="2">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray10" Click="Btn_TrayClick"/>
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray6" Click="Btn_TrayClick"/>
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="3">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tra11" Click="Btn_TrayClick"/>
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray8" Click="Btn_TrayClick"/>
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="4">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray12" Click="Btn_TrayClick"/>
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray10" Click="Btn_TrayClick"/>
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="5">
-                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray13" Click="Btn_TrayClick"/>
+                                <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray12" Click="Btn_TrayClick"/>
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="6">
                                 <Button Template="{StaticResource TrayButtonTemplate}" Content="Tray14" Click="Btn_TrayClick"/>
@@ -702,9 +704,9 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Margin="10,0,0,0" Text="Properities" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF2E2E2E" FontFamily="Arial" FontSize="16"/>
             <Grid Name="PropertyRegion" Grid.Row="1" Margin="5" Background="#FFFBF9F9">
-                <wpg:PropertyGrid   Foreground="White"   Name="myPerprotyGrid" ShowDescription="True"  Margin="0,40,0,0" AutomaticlyExpandObjects="True" />
+                <wpg:PropertyGrid   Foreground="White"   Name="myPerprotyGrid" ShowDescription="True"  Margin="0,0,0,0" AutomaticlyExpandObjects="True" />
                 <!--Instance="{Binding ElementName=button1}" Canvas.Left="308" Canvas.Top="11" DataContext="{Binding}" ShowPreview="True" AutomaticlyExpandObjects="False"-->
-                <Button Content="JustForTestButton" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="Button_Click" />
+                <!--<Button Content="JustForTestButton" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="Button_Click" />-->
             </Grid>
         </Grid>
         <Grid Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0" Background="#FF6B6A6C">
@@ -712,7 +714,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Foreground="AliceBlue" Text="Test Info : Testing long strings does not make sense. Test TestTestTestTestTestTestTestTestTestTestTestTestTestTest" VerticalAlignment ="Center"  HorizontalAlignment="Left" Margin="5"/>
+            <TextBlock Grid.Column="0" Foreground="AliceBlue" Text="Message : [INFO]Test process complete!" VerticalAlignment ="Center"  HorizontalAlignment="Left" Margin="5"/>
             <!--<ProgressBar Name="MyProgressBar" Grid.Column="1"/>-->
         </Grid>
     </Grid>

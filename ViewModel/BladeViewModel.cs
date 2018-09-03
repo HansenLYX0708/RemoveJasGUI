@@ -15,17 +15,27 @@ namespace ViewModel
         private int _MemsCount;
         private string _DiskSN;
 
+        private string _Type;
+        private string _ActuatorSerialNumber;
+        private string _PCBASerialNumber;
+        private string _MotorSerialNumber;
+        private string _FlexSerialNumber;
         #endregion Fields
 
         #region Constructors
         public BladeViewModel()
         {
-            _Name = "Blade Test";
+            _Name = "Blade1";
             _Status = "Open";
-            _SerialNum = "woei3e89fuw";
-            _MemsSN = "SASIDU7869";
-            _MemsCount = 2345;
-            _DiskSN = "sfdg344";
+            _SerialNum = "C2247";
+            _MemsSN = "File not found";
+            _MemsCount = 2065;
+            _DiskSN = "A0XK94S";
+            _Type = "AR8 DN";
+            _ActuatorSerialNumber = "File not found";
+            _PCBASerialNumber = "File not found";
+            _MotorSerialNumber = "File not found";
+            _FlexSerialNumber = "PA527004LXD1";
         }
         #endregion Constructors
 
@@ -78,6 +88,43 @@ namespace ViewModel
                 return _DiskSN;
             }
         }
+        public string Type
+        {
+            get
+            {
+                return _Type;
+            }
+        }
+        public string ActuatorSN
+        {
+            get
+            {
+                return _ActuatorSerialNumber;
+            }
+        }
+        public string PCBASN
+        {
+            get
+            {
+                return _PCBASerialNumber;
+            }
+        }
+
+        public string MotorSN
+        {
+            get
+            {
+                return _MotorSerialNumber;
+            }
+        }
+        public string FlexSN
+        {
+            get
+            {
+                return _FlexSerialNumber;
+            }
+        }
+
 
         #endregion Properties
 

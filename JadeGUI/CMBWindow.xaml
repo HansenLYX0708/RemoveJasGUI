@@ -1,0 +1,67 @@
+﻿<Window x:Class="JadeGUI.CMBWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JadeGUI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" 
+        BorderThickness="1,0,1,1" 
+        Closed="DXRibbonWindow_Closed" 
+        ResizeMode="NoResize"
+        Title="CMBWindow" Height="200" Width="350">
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+            <Grid>
+                <Rectangle Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF6B6A6C" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <TextBlock Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}" Foreground="White" FontFamily="Arial" FontSize="16"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#01b0b7" />
+                    <!--<Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>-->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FFBCD7D8"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FFF7F9FB"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#2d333d"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#444d5c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Name="MainWindowTop" Grid.ColumnSpan="3" Grid.Row="0" Background="#FF6B6A6C">
+            <Button Content="X" Template="{StaticResource ButtonTemplate}" Width="40" HorizontalAlignment="Right" Background="#FF111213" Click="BtnClose_click"/>
+        </Grid>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+            <Image Source="{Binding ImagePath}" Width="62" Height="62" Margin="40,20,20,20"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" Width="280" TextAlignment="Left"
+                       Text="{Binding MessageBoxText}" FontSize="12"/>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Template="{StaticResource ButtonTemplate}" Content="OK" x:Name="OkButton" Width="60" Height="25" Click="OkButton_Click" Margin="10,0,15,0" IsDefault="True"
+                    Visibility="{Binding OkButtonVisibility,Mode=OneWay}"/>
+            <Button Grid.Column="1" Template="{StaticResource ButtonTemplate}"  Content="Yes" x:Name="YesButton" Width="60" Height="25" Click="YesButton_Click" Margin="10,0,15,0" 
+                    Visibility="{Binding YesButtonVisibility,Mode=OneWay}"/>
+            <Button Grid.Column="2" Template="{StaticResource ButtonTemplate}" Content="No" x:Name="NoButton" Width="60" Height="25" Click="NoButton_Click" Margin="10,0,15,0"
+                    Visibility="{Binding NoButtonVisibility,Mode=OneWay}"/>
+            <Button Grid.Column="3" Template="{StaticResource ButtonTemplate}" Content="Cancel" x:Name="CancelButton" Width="60" Height="25" Click="CancelButton_Click" Margin="10,0,15,0"
+                    Visibility="{Binding CancelButtonVisibility}"/>
+        </Grid>
+    </Grid>
+</Window>

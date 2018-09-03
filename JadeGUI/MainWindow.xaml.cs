@@ -28,7 +28,6 @@ namespace JadeGUI
         {
             InitializeComponent();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //this.Left = 0;
@@ -39,7 +38,6 @@ namespace JadeGUI
             leftGrid.DataContext = _AmberMachine.CommonInfo;
             FuncTabControl.DataContext = _AmberMachine.PageEnableControl;
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -48,24 +46,30 @@ namespace JadeGUI
                 DragMove();
             }
         }
-
         private void BtnClose_click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
         private void BtnMinimized_click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
-
         private void BtnMaximized_click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Maximized;
+            if (WindowState == WindowState.Normal)
+            {
+                WindowState = WindowState.Maximized;
+            }
+            else if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            //CustomMessageBox.Show("Really Exit?", CustomMessageBoxButton.OKCancel, CustomMessageBoxIcon.Question);
             MessageBoxResult result = MessageBox.Show("Really Exit?", "Message", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
@@ -75,10 +79,9 @@ namespace JadeGUI
             {
                 e.Cancel = true;
             }
+
         }
-
         private delegate void SetprogressBarHandle(int vaule);
-
         private void Btn_BladeDoubleClick(object sender, RoutedEventArgs e)
         { }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -184,10 +187,10 @@ namespace JadeGUI
             switch (btn.Content.ToString())
             {
                 case "Picker1":
-                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[0];
+                    myPerprotyGrid.Instance = _AmberMachine.m_Pickers[0];
                     break;
                 case "Picker2":
-                    myPerprotyGrid.Instance = _AmberMachine.m_Trays[1];
+                    myPerprotyGrid.Instance = _AmberMachine.m_Pickers[1];
                     break;
                 default:
                     break;

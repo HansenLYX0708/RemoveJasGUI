@@ -8,8 +8,8 @@
     <ProjectGuid>{345C94D6-5987-4B91-BB0E-D24DB2DBE9C3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RemoveJasGUI</RootNamespace>
-    <AssemblyName>RemoveJasGUI</AssemblyName>
+    <RootNamespace>JadeGUI</RootNamespace>
+    <AssemblyName>JadeGUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -60,9 +60,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomMessageBox.cs" />
+    <Compile Include="CMBWindow.xaml.cs">
+      <DependentUpon>CMBWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestInstance.xaml.cs">
       <DependentUpon>TestInstance.xaml</DependentUpon>
     </Compile>
+    <Page Include="CMBWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,6 +139,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Style\Templates\Images\CrosshairsTemplate.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\alert.png" />
+    <Resource Include="Images\question.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

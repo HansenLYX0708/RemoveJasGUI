@@ -17,8 +17,8 @@ namespace ViewModel
         #region Constructors
         public TestMachineViewModel()
         {
-            _MachineNum = "test machine number";
-            _MachineStatus = "test machine status";
+            _MachineNum = "MFG567A";
+            _MachineStatus = "MACHINE DOWN";
             _MonitorMode = "Normal";
         }
         #endregion Constructors
