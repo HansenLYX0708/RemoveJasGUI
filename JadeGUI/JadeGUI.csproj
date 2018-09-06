@@ -152,7 +152,10 @@
     <Resource Include="Images\question.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SplashScreen.png" />
+    <Resource Include="Images\SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\camera.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

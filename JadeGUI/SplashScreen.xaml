@@ -14,6 +14,6 @@
         <Image Grid.Row="1" Name="image1"  Stretch="None" Focusable="True" Source="/BladeRunner;component/SplashScreen.png" />
         <Label Grid.Row="2" Content="Copyright (C) 2012 - 2017 Western Digital"  HorizontalAlignment="Stretch" Name="label2" VerticalAlignment="Center" FontSize="10" HorizontalContentAlignment="Left" Margin="50,0,0,0"/>
         -->
-        <Image Grid.Row="0" Name="image1"  Stretch="Fill" Focusable="True" Source="SplashScreen.png"/>
+        <Image Grid.Row="0" Name="image1"  Stretch="Fill" Focusable="True" Source="Images/SplashScreen.png"/>
     </Grid>
 </Window>

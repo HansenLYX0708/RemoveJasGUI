@@ -55,6 +55,22 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <ControlTemplate x:Key="TabItemTemplate2" TargetType="{x:Type TabItem}">
+            <Grid>
+                <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF196996" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                <TextBlock x:Name="buttonContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Header}" Foreground="White" FontFamily="Arial"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSelected"  Value="True">
+                    <Setter TargetName="buttonBackground" Property="Fill" Value="#FF86D4D1" />
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="buttonBackground" Property="Visibility" Value="Hidden"/>
+                    <Setter TargetName="buttonContent" Property="Visibility" Value="Hidden"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
         <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
             <Grid>
                 <Rectangle x:Name="buttonBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="#FF0091EB" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
@@ -156,13 +172,17 @@
             <MenuItem Header="Align Slider"/>
             <MenuItem Header="Move to UpCamera"/>
         </ContextMenu>
-        <ContextMenu x:Key="UpCameraPrimaryDatumMenu" >
+        <ContextMenu x:Key="UpCameraMenu" >
             <MenuItem Header="UpCameraMPP"/>
-            <MenuItem Header="DownCamera at UpCamera"/>
+            <MenuItem Header="Primary Datum"/>
         </ContextMenu>
-        <ContextMenu x:Key="DownCameraPrimaryDatumMenu" >
+        <ContextMenu x:Key="DownCameraMenu" >
             <MenuItem Header="DownCameraMPP"/>
             <MenuItem Header="DownCamera Z"/>
+            <MenuItem Header="Primary Datum"/>
+        </ContextMenu>
+        <ContextMenu x:Key="OCRCameraMenu" >
+            <MenuItem Header="TeachPosition"/>
         </ContextMenu>
         <!--Picker-->
         <ControlTemplate x:Key="PickerButtonTemplate" TargetType="{x:Type Button}">
@@ -256,8 +276,8 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <!--Primary Datum-->
-        <ControlTemplate x:Key="UpCameraPrimaryDatumButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="False">
+        <ControlTemplate x:Key="UpCameraButtonTemplate" TargetType="{x:Type Button}">
+            <Grid ShowGridLines="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20*"/>
@@ -268,8 +288,8 @@
                     <RowDefinition Height="4*"/>
 
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="UpCameraPrimaryDatumContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
-                <Image Grid.Column="1" Grid.Row="1" x:Name="BackgroundImage" Source="Images/CrosshairsTemplate.bmp" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource UpCameraPrimaryDatumMenu}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Name="UpCameraContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Images/Camera.png" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource UpCameraMenu}"/>
 
             </Grid>
             <ControlTemplate.Triggers>
@@ -278,15 +298,15 @@
                     <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
                 </Trigger>-->
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="UpCameraPrimaryDatumContent" Property="Foreground" Value="#FFF7F9FB"/>
+                    <Setter TargetName="UpCameraContent" Property="Foreground" Value="#FFF7F9FB"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="UpCameraPrimaryDatumContent" Property="Foreground" Value="#444d5c"/>
+                    <Setter TargetName="UpCameraContent" Property="Foreground" Value="#444d5c"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <ControlTemplate x:Key="DownCameraPrimaryDatumButtonTemplate" TargetType="{x:Type Button}">
-            <Grid ShowGridLines="False">
+        <ControlTemplate x:Key="OCRCameraButtonTemplate" TargetType="{x:Type Button}">
+            <Grid ShowGridLines="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20*"/>
@@ -297,8 +317,8 @@
                     <RowDefinition Height="4*"/>
 
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="DownCameraPrimaryDatumContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
-                <Image Grid.Column="1" Grid.Row="1" x:Name="BackgroundImage" Source="Images/CrosshairsTemplate.bmp" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource DownCameraPrimaryDatumMenu}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Name="OCRContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Images/Camera.png" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource OCRCameraMenu}"/>
 
             </Grid>
             <ControlTemplate.Triggers>
@@ -307,10 +327,39 @@
                     <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
                 </Trigger>-->
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="DownCameraPrimaryDatumContent" Property="Foreground" Value="#FFF7F9FB"/>
+                    <Setter TargetName="OCRContent" Property="Foreground" Value="#FFF7F9FB"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="DownCameraPrimaryDatumContent" Property="Foreground" Value="#444d5c"/>
+                    <Setter TargetName="OCRContent" Property="Foreground" Value="#444d5c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="DownCameraButtonTemplate" TargetType="{x:Type Button}">
+            <Grid ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Grid.Row="0" Name="DownCameraContent" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{TemplateBinding Content}"/>
+                <Image Grid.Column="1" Grid.Row="1" Name="BackgroundImage" Source="Images/Camera.png" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Center" ContextMenu="{StaticResource DownCameraMenu}"/>
+
+            </Grid>
+            <ControlTemplate.Triggers>
+                <!--<Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="BackgroundImage" Property="Source"  Value="Style/Image/TrayActive.png"/>
+                    <Setter TargetName="buttonContent" Property="Foreground" Value="#FF97A9C6"/>
+                </Trigger>-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="DownCameraContent" Property="Foreground" Value="#FFF7F9FB"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="DownCameraContent" Property="Foreground" Value="#444d5c"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -621,20 +670,15 @@
                         </Grid.RowDefinitions>
                         <Grid x:Name="DatumPicker" ShowGridLines="False" Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Content="UpCameraPrimaryDatum" Template="{StaticResource UpCameraPrimaryDatumButtonTemplate}"/>
-                                <Button Grid.Column="1" Content="DownCameraPrimaryDatum" Template="{StaticResource DownCameraPrimaryDatumButtonTemplate}"/>
-                            </Grid>
-                            <Grid Grid.Column="1"/>
-                            <Grid Grid.Column="2">
+                            <Button Grid.Column="0" Content="Down Camera" Template="{StaticResource DownCameraButtonTemplate}"/>
+                            <Button Grid.Column="1" Content="Up Camera" Template="{StaticResource UpCameraButtonTemplate}"/>
+                            <Button Grid.Column="2" Content="OCR Camera" Template="{StaticResource OCRCameraButtonTemplate}"/>
+                            <Grid Grid.Column="3">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -726,8 +770,10 @@
                         </Grid>
                     </Grid>
                 </TabItem>
+                <TabItem Header="Teach Data" x:Name="TeachDataTab" Template="{StaticResource TabItemTemplate}" Height="20" Width="80">
+                
+                </TabItem>
                 <TabItem Header="Device" Name="DeviceTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding DeviceControl}" Height="20" Width="80">
-                    <!--<local:DeviceGridControl/>-->
                     <Grid x:Name="DeviceMain" ShowGridLines="False">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -738,9 +784,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Output" HorizontalAlignment="Center"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Input" HorizontalAlignment="Center"/>
-                        <ListView  Grid.Column="0" Grid.Row="1" Margin="5" Name="DeviceOutputListView">
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Output" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Input" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <ListView  Grid.Column="0" Grid.Row="1" Margin="5" Name="DeviceOutputListView" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="I/O Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
@@ -748,7 +794,7 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <ListView Grid.Column="1" Grid.Row="1" Margin="5" Name="DeviceInputListView">
+                        <ListView Grid.Column="2" Grid.Row="1" Margin="5" Name="DeviceInputListView">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="I/O Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
@@ -759,14 +805,195 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Statistics" Name="StatisticsTab" Template="{StaticResource TabItemTemplate}" IsEnabled="{Binding StatisticsControl}" Height="20" Width="80">
-                    
-                    
-                    
-                    
-                    
-                    
+                    <Grid ShowGridLines="False">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.ColumnSpan="2" Margin="5" Fill="Beige"/>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" Margin="10" Fill="#FFF29100" ToolTip="Downtime Start"/>
+                                <TextBlock Grid.Column="0" Margin="10" Foreground="White" FontSize="18" Text="12:01" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Downtime Start"></TextBlock>
+                                <Rectangle Grid.Column="1" Margin="10" Fill="#FFF29100" ToolTip="Downtime End"/>
+                                <TextBlock Grid.Column="1" Margin="10" Foreground="White" FontSize="18" Text="12:01" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Downtime End"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" Margin="10" Fill="#ff94c23d" ToolTip="Uptime Start"/>
+                                <TextBlock Grid.Column="0" Margin="10" Foreground="White" FontSize="18" Text="12:01" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Uptime Start"></TextBlock>
+                                <Rectangle Grid.Column="1" Margin="10" Fill="#ff94c23d" ToolTip="Uptime End"/>
+                                <TextBlock Grid.Column="1" Margin="10" Foreground="White" FontSize="18" Text="12:01" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Uptime End"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Rectangle Grid.Column="0" Margin="10" Fill="#FF3DC23D" ToolTip="Operator"/>
+                                <TextBlock  Margin="10" Foreground="White" FontSize="24" Text="PETRA KABAYO" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Operator"></TextBlock>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TabControl>
+                                    <TabItem Header="Current Error" Height="20" Width="100" Template="{StaticResource TabItemTemplate2}">
+                                        <ListView Name="CurrentErrorListView">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn Header="ERROR CODE" Width="100" DisplayMemberBinding="{Binding Path=ErrorCode}"/>
+                                                    <GridViewColumn Header="ERROR CATEGORY" Width="130" DisplayMemberBinding="{Binding Path=ErrorCATEGORY}"/>
+                                                    <GridViewColumn Header="START TIME" Width="100" DisplayMemberBinding="{Binding Path=StartTime}"/>
+                                                    <GridViewColumn Header="END TIME" Width="100" DisplayMemberBinding="{Binding Path=EndTime}"/>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </TabItem>
+                                    <TabItem Header="Error Hostory" Height="20" Width="100" Template="{StaticResource TabItemTemplate2}">
+                                    </TabItem>
+                                </TabControl>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Button Template="{StaticResource ButtonTemplate}" Margin="20" Content="Apply Corrective"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ListView Grid.Column="0" Name="HourlyYield1ListView">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding Path=Time}"/>
+                                        <GridViewColumn Header="In" Width="100" DisplayMemberBinding="{Binding Path=InCount}"/>
+                                        <GridViewColumn Header="Out" Width="100" DisplayMemberBinding="{Binding Path=OutCount}"/>
+                                        <GridViewColumn Header="Yield" Width="100" DisplayMemberBinding="{Binding Path=Yield}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <ListView Grid.Column="1" Name="HourlyYield2ListView">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Time" Width="100"  DisplayMemberBinding="{Binding Path=Time}"/>
+                                        <GridViewColumn Header="In" Width="100" DisplayMemberBinding="{Binding Path=InCount}"/>
+                                        <GridViewColumn Header="Out" Width="100" DisplayMemberBinding="{Binding Path=OutCount}"/>
+                                        <GridViewColumn Header="Yield" Width="100" DisplayMemberBinding="{Binding Path=Yield}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                        <Grid Grid.Row="3" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Grid.Column="0">
+                                <Canvas>
+                                    <Line x:Name="x_axis" Stroke="Black" StrokeThickness="3" X1="40" Y1="150" X2="400" Y2="150" StrokeStartLineCap="Round"/>
+                                    <Line x:Name="y_axis" Stroke="Black" StrokeThickness="3" X1="40" Y1="150" X2="40" Y2="10" StrokeStartLineCap="Round"/>
+                                    <!--<Path x:Name="x_axisArrow" Fill="Black">
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                <PathFigure StartPoint="480,276" IsClosed="True">
+                                                    <LineSegment Point="480,284"/>
+                                                    <LineSegment Point="490,280"/>
+                                                </PathFigure>
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>
+                                    <Path x:Name="y_axisArrow" Fill="Black">
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                <PathFigure StartPoint="36,30" IsClosed="True">
+                                                    <LineSegment Point="44,30"/>
+                                                    <LineSegment Point="40,20"/>
+                                                </PathFigure>
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>-->
+                                    <TextBlock x:Name="x_label" Text="x" Canvas.Left="400" Canvas.Top="150" FontFamily="Arial" FontStyle="Italic" FontSize="20"/>
+                                    <TextBlock x:Name="y_label" Text="y" Canvas.Left="20" Canvas.Top="4" FontFamily="Arial" FontStyle="Italic" FontSize="20"/>
+                                    <TextBlock x:Name="o_label" Text="o" Canvas.Left="20" Canvas.Top="150" FontFamily="Arial" FontStyle="Italic" FontSize="20"/>
+                                    <Line x:Name="y_scale1" Stroke="Black" StrokeThickness="1" X1="40" Y1="270" X2="44" Y2="270" StrokeEndLineCap="Triangle"/>
+                                </Canvas>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="1">
+                                <Canvas>
+                                    <Line Stroke="Black" StrokeThickness="3" X1="40" Y1="150" X2="400" Y2="150" StrokeStartLineCap="Round"/>
+                                    <Line Stroke="Black" StrokeThickness="3" X1="40" Y1="150" X2="40" Y2="10" StrokeStartLineCap="Round"/>
+                                    <!--<Path x:Name="x_axisArrow" Fill="Black">
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                <PathFigure StartPoint="480,276" IsClosed="True">
+                                                    <LineSegment Point="480,284"/>
+                                                    <LineSegment Point="490,280"/>
+                                                </PathFigure>
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>
+                                    <Path x:Name="y_axisArrow" Fill="Black">
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                <PathFigure StartPoint="36,30" IsClosed="True">
+                                                    <LineSegment Point="44,30"/>
+                                                    <LineSegment Point="40,20"/>
+                                                </PathFigure>
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>-->
+                                    <TextBlock Text="x" Canvas.Left="400" Canvas.Top="150" FontFamily="Arial" FontStyle="Italic" FontSize="20"/>
+                                    <TextBlock Text="y" Canvas.Left="20" Canvas.Top="4" FontFamily="Arial" FontStyle="Italic" FontSize="20"/>
+                                    <TextBlock Text="o" Canvas.Left="20" Canvas.Top="150" FontFamily="Arial" FontStyle="Italic" FontSize="20"/>
+                                    <Line Stroke="Black" StrokeThickness="1" X1="40" Y1="150" X2="44" Y2="150" StrokeEndLineCap="Triangle"/>
+                                </Canvas>
+                            </Grid>
+                            <ListView Grid.Row="1" Grid.Column="0" Name="ParetoListView">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Blades" Width="80" DisplayMemberBinding="{Binding Path=BladeNum}"/>
+                                        <GridViewColumn Header="Mistest" Width="80" DisplayMemberBinding="{Binding Path=MisTest}"/>
+                                        <GridViewColumn Header="Contact" Width="80" DisplayMemberBinding="{Binding Path=Contact}"/>
+                                        <GridViewColumn Header="PES" Width="80" DisplayMemberBinding="{Binding Path=PES}"/>
+                                        <GridViewColumn Header="DSC" Width="80" DisplayMemberBinding="{Binding Path=DSC}"/>
+                                        <GridViewColumn Header="Last 50" Width="80" DisplayMemberBinding="{Binding Path=Last50}"/>
+                                        <GridViewColumn Header="Total" Width="80" DisplayMemberBinding="{Binding Path=Total}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <ListView Grid.Row="1" Grid.Column="2" Name="TotalECListView">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Error Codes" Width="80" DisplayMemberBinding="{Binding Path=ErrorCode}"/>
+                                        <GridViewColumn Header="Blade1" Width="60"  DisplayMemberBinding="{Binding Path=Blade1Count}"/>
+                                        <GridViewColumn Header="Blade2" Width="60"  DisplayMemberBinding="{Binding Path=Blade2Count}"/>
+                                        <GridViewColumn Header="Blade3" Width="60"  DisplayMemberBinding="{Binding Path=Blade3Count}"/>
+                                        <GridViewColumn Header="Blade4" Width="60"  DisplayMemberBinding="{Binding Path=Blade4Count}"/>
+                                        <GridViewColumn Header="Blade5" Width="60"  DisplayMemberBinding="{Binding Path=Blade5Count}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Grid>
                 </TabItem>
-
             </TabControl>
         </Grid>
         <Grid x:Name="rightGrid" Margin="5,5,5,5"  ShowGridLines="False" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
@@ -777,8 +1004,6 @@
             <TextBlock Grid.Row="0" Background="#FF871996" Margin="5,0,0,0" Text="  Properities  " Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Arial"/>
             <Grid Name="PropertyRegion" Grid.Row="1" Margin="5,0,0,0">
                 <wpg:PropertyGrid x:Name="myPerprotyGrid" ShowDescription="True" BorderBrush="White" AutomaticlyExpandObjects="True" />
-                <!--Instance="{Binding ElementName=button1}" Canvas.Left="308" Canvas.Top="11" DataContext="{Binding}" ShowPreview="True" AutomaticlyExpandObjects="False"-->
-                <!--<Button Content="JustForTestButton" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="Button_Click" />-->
             </Grid>
         </Grid>
         <Grid x:Name="MainWindowBottom" Grid.ColumnSpan="3" Grid.Row="2" Margin="0">

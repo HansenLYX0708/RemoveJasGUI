@@ -16,6 +16,7 @@ namespace ViewModel
         public List<PickerViewModel> m_Pickers;
         public List<DatumViewModel> m_Datums;
         public List<TopDeviceViewModel> m_TopDevices;
+        public StatisticViewModel m_StatisticViewModel;
         #endregion Fields
 
         #region Constructors
@@ -30,6 +31,7 @@ namespace ViewModel
             m_Datums = new List<DatumViewModel>();
             m_TopDevices = new List<TopDeviceViewModel>();
 
+            m_StatisticViewModel = new StatisticViewModel();
             // Init all device Data
             for (int i = 0; i < 5; i++)
             {
@@ -63,7 +65,7 @@ namespace ViewModel
             {
                 TopDeviceViewModel tmpTopDevice = new TopDeviceViewModel();
                 tmpTopDevice.Name = String.Format("Device{0}", i + 1);
-                tmpTopDevice.State = "Locking";
+                tmpTopDevice.State = "On";
                 m_TopDevices.Add(tmpTopDevice);
             }
         }

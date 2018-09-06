@@ -31,7 +31,7 @@ namespace JadeGUI
             HGST.SCS.UI.SplashScreen splashScreen = new HGST.SCS.UI.SplashScreen();
             splashScreen.Show();
 
-            Delay(3);
+            Delay(1);
 
             splashScreen.Close();
         }
@@ -47,8 +47,11 @@ namespace JadeGUI
             DeviceOutputListView.ItemsSource = _AmberMachine.m_TopDevices;
             DeviceInputListView.ItemsSource = _AmberMachine.m_TopDevices;
 
-            
-
+            CurrentErrorListView.ItemsSource = _AmberMachine.m_StatisticViewModel.downtimeInfos;
+            HourlyYield1ListView.ItemsSource = _AmberMachine.m_StatisticViewModel.hourlyYields1;
+            HourlyYield2ListView.ItemsSource = _AmberMachine.m_StatisticViewModel.hourlyYields2;
+            ParetoListView.ItemsSource = _AmberMachine.m_StatisticViewModel.paretoOfDefects;
+            TotalECListView.ItemsSource = _AmberMachine.m_StatisticViewModel.totalECPerBlades;
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

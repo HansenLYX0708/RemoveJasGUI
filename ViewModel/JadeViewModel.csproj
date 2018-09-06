@@ -43,6 +43,7 @@
     <Compile Include="AmberViewModel.cs" />
     <Compile Include="BladeViewModel.cs" />
     <Compile Include="DatumViewModel.cs" />
+    <Compile Include="StatisticViewModel.cs" />
     <Compile Include="TopDeviceViewModel.cs" />
     <Compile Include="PageEnableControl.cs" />
     <Compile Include="PickerViewModel.cs" />
